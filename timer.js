@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   var score = 0           
-  var myVar=setInterval(function () {myTimer()}, 200);
+  var myVar=setInterval(function () {myTimer()}, 50);
 
   // THIS IS THE CODE THAT RUNS ONLY ON START UP
   initializeLibrary();

@@ -1,4 +1,4 @@
-var increment = 10;
+var increment = 1;
 var score = 0;
 direction = "right";
 
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ang2 = 1.25 *Math.PI;
         pacwise = true;
         direction = "left";
-        canMove();
+        canMove(direction);
         x = x - increment;
         break;
       case("'"):

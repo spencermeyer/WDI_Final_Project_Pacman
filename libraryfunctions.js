@@ -23,7 +23,7 @@ function clear(){
 }
 function drawBackGroudImage(){
   MazeBackground = new Image();
-  MazeBackground.src = "Pac_man_background_image_clean.png";
+  MazeBackground.src = "Pac_man_background_image_clean2.png";
   ctx.drawImage(MazeBackground,0,0,560,620);
 }
 function drawBackground(){
@@ -54,11 +54,14 @@ function mirrorDown(){
   ctx.setTransform(1,1,0,1,0,500);
 }
 function pacman(){
+  var radiusPacman = 13;
+  var colorPacman  = "yellow";
+
   ctx.beginPath();
   ctx.moveTo(x,y);
-  ctx.arc(x,y,8,ang1,ang2,pacwise);
+  ctx.arc(x,y,radiusPacman,ang1,ang2,pacwise);
   ctx.lineTo(x,y);
-  ctx.fillStyle="yellow";
+  ctx.fillStyle=colorPacman;
   ctx.fill();
   ctx.closePath;
 }
@@ -66,8 +69,8 @@ function drawDots(){
   for (i=0; i<pacDots.length; i++){
     // console.log("example pacdot", pacDots[i][0], pacDots[i][1]);
     ctx.beginPath();
-    ctx.arc(pacDots[i][0],pacDots[i][1],3,0,Math.PI*2);
-    ctx.fillStyle="white";
+    ctx.arc(pacDots[i][0],pacDots[i][1],2,0,Math.PI*2);
+    ctx.fillStyle="yellow";
     ctx.fill();
     ctx.closePath;
   }
@@ -75,24 +78,30 @@ function drawDots(){
 function drawEnemy(){
   var enemy = new Image();
   enemy.src = "Pacman_1.png";
-  ctx.drawImage(enemy,200,200,20,20);
+  ctx.drawImage(enemy,200,200,23,23);
 }
 function canMove(){
-  var topx = x - 40;
-  var topy = y - 10;
-  var p = ctx.getImageData(topx, topy, 30, 20).data;
-  for (i=0; i<p.length; i+=4){
-    //console.log(i, p[i]);
-    if(p[i+2] > 50){
+  // Setup detection 
+  var width    = 1;              // Dependent on the speed of pacman
+  var height   = 20;             // Dependent on the height of pacman
+  var topLeft  = x-(10 + width); // Radius of pacMan + width of detection
+  var topRight = y-10;           // 
+
+  // The CanvasRenderingContext2D.getImageData() method of the Canvas 2D API returns an ImageData object representing the underlying pixel data for the area of the canvas denoted by the rectangle which starts at (sx, sy) and has an sw width and sh height.
+  var imageData = ctx.getImageData(topLeft, topRight, width, height).data;
+  // console.log(imageData);
+
+  for (i=0; i<imageData.length; i+=4){
+    //console.log(i, imageData[i]);
+    // iterate throught the array reading rgb(a) and determining colour.
+    if(imageData[i]<100 && imageData[i+1]<100 && imageData[i+2]>180){
       console.log("blue detected !!!!");
+    };
+
+    if(imageData[i]===255 && imageData[i+1]===255 && imageData[i+2]===255){
+      console.log("white detected !!!!");
     };
   } 
 }
-
-
-
-
-
-
 
 
