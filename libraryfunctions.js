@@ -78,15 +78,17 @@ function drawEnemy(){
   ctx.drawImage(enemy,200,200,20,20);
 }
 function canMove(){
-  var p = ctx.getImageData(x, y, 1, 1).data;
-  var hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
-  console.log("HEX: " + hex);
+  var topx = x - 40;
+  var topy = y - 10;
+  var p = ctx.getImageData(topx, topy, 30, 20).data;
+  for (i=0; i<p.length; i+=4){
+    //console.log(i, p[i]);
+    if(p[i+2] > 50){
+      console.log("blue detected !!!!");
+    };
+  } 
 }
-function rgbToHex(r, g, b){
-  if (r > 255 || g > 255 || b > 255)
-    throw "Invalid color component";
-  return ((r << 16) | (g << 8) | b).toString(16);
-}
+
 
 
 
