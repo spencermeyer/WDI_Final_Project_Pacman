@@ -26,22 +26,7 @@ function drawBackGroudImage(){
   MazeBackground.src = "Pac_man_background_image_clean2.png";
   ctx.drawImage(MazeBackground,0,0,560,620);
 }
-function drawBackground(){
-  // only rounds the joins if the line with is really big
-  ctx.lineJoin = "round";
-  ctx.lineWidth = 3;
-  ctx.strokeRect(160,140,20,140);
-  ctx.strokeRect(180,200,80,20);
-  // set compositing to erase existing drawings 
-  // new drawings will erase existing drawings where the two overlap
-  ctx.globalCompositeOperation='destination-out';
-  // fill all rects
-  // This "erases" all but the outline stroke
-  ctx.fillRect(20,20,100,200);
-  ctx.fillRect(90,110,75,50);
-  // reset compositing to its default mode
-  ctx.globalCompositeOperation='source-over';
-}
+
 function drawRects(){
   for (i=0; i<pacRects.length; i++){
     ctx.strokeStyle = '#00008F';
@@ -50,16 +35,13 @@ function drawRects(){
     ctx.closePath;
   }
 }
-function mirrorDown(){
-  ctx.setTransform(1,1,0,1,0,500);
-}
-function pacman(){
-  var radiusPacman = 13;
-  var colorPacman  = "yellow";
 
+function pacman(){
+  radiusPacman = 13;
+  var colorPacman  = "yellow";
   ctx.beginPath();
   ctx.moveTo(x,y);
-  ctx.arc(x,y,radiusPacman,ang1,ang2,pacwise);
+  ctx.arc(x,y,radiusPacman,ang1,ang2,pacwise);  // x and y are the circle centre
   ctx.lineTo(x,y);
   ctx.fillStyle=colorPacman;
   ctx.fill();
@@ -80,28 +62,48 @@ function drawEnemy(){
   enemy.src = "Pacman_1.png";
   ctx.drawImage(enemy,200,200,23,23);
 }
-function canMove(){
-  // Setup detection 
-  var width    = 1;              // Dependent on the speed of pacman
-  var height   = 20;             // Dependent on the height of pacman
-  var topLeft  = x-(10 + width); // Radius of pacMan + width of detection
-  var topRight = y-10;           // 
-
-  // The CanvasRenderingContext2D.getImageData() method of the Canvas 2D API returns an ImageData object representing the underlying pixel data for the area of the canvas denoted by the rectangle which starts at (sx, sy) and has an sw width and sh height.
-  var imageData = ctx.getImageData(topLeft, topRight, width, height).data;
+function canMove(direction){
+    // Setup detection and disable movement if blue detected.
+    // Dependent on the speed of pacman
+    // Dependent on the height of pacman
+    movable       = true;            // set true until blue detected
+    // imageData arguments are: top left x and y coordinates of the detecting 
+    // rectangle and the detecting rectangle width and height.
+    switch(direction){
+      case("left"):
+        var topLeftX  = x-(radiusPacman + width);
+        var topLeftY  = y-(radiusPacman);
+        var width     = 5;
+        var height    = radiusPacman*2;
+      case("right"):
+        var topLeftX  = x+(radiusPacman);
+        var topLeftY  = y-(radiusPacman);
+        var width     = 5;
+        var height    = radiusPacman*2;
+      case("up"):
+        var topLeftX  = x-(radiusPacman-width);
+        var topLeftY  = y-(radiusPacman+width);
+        var width     = radiusPacman*2;
+        var height    = 5;
+      case("down"):
+        var topLeftX  = x-(radiusPacman);
+        var topLeftY  = y+(radiusPacman);
+        var width     = radiusPacman*2;
+        var height    = 5;
+    }
+    var imageData = ctx.getImageData(topLeftX, topLeftY, width, height).data;
   // console.log(imageData);
-
   for (i=0; i<imageData.length; i+=4){
     //console.log(i, imageData[i]);
     // iterate throught the array reading rgb(a) and determining colour.
     if(imageData[i]<100 && imageData[i+1]<100 && imageData[i+2]>180){
-      console.log("blue detected !!!!");
+      //console.log("blue detected !!!!");
+      movable = false;
+    }else{
+      movable = true;
     };
-
-    if(imageData[i]===255 && imageData[i+1]===255 && imageData[i+2]===255){
-      console.log("white detected !!!!");
-    };
-  } 
+  };
+  return movable;
 }
 
 

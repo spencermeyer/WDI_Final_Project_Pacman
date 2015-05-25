@@ -1,9 +1,9 @@
-var increment = 1;
+var increment = 6;
 var score = 0;
 direction = "right";
 
 document.addEventListener('DOMContentLoaded', function () {
-  console.log ("start of Javascript doc loaded")
+  console.log ("start of Javascript doc loaded");
   
   document.onkeydown=function(){
     //console.log("a key pressed")
@@ -15,9 +15,10 @@ document.addEventListener('DOMContentLoaded', function () {
         ang1 = 0.75 *Math.PI;
         ang2 = 1.25 *Math.PI;
         pacwise = true;
-        direction = "left";
         canMove(direction);
-        x = x - increment;
+        direction = "left";
+        console.log("left" + movable);
+        if (movable) {x = x - increment};
         break;
       case("'"):
         //console.log("right was pressed");
@@ -25,7 +26,9 @@ document.addEventListener('DOMContentLoaded', function () {
         ang2 = 1.75*Math.PI;
         pacwise = false;
         direction = "right";
-        x=x+increment;
+        canMove(direction);
+        console.log("right" + movable);
+        if (movable){x=x+increment};
         break;
       case("&"):
         //console.log("up was pressed");
@@ -33,7 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
         ang2 = 1.75*Math.PI;
         pacwise  = true;
         direction = "up";
-        y=y-increment;
+        canMove(direction);
+        console.log("up" + movable);
+        if(movable){y=y-increment};
         break;
       case("("):
         //console.log("down was pressed");
@@ -41,7 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
         ang2 = 2.25*Math.PI;
         pacwise = false;
         direction = "down";
-        y=y+increment;
+        canMove(direction);
+        console.log("down"+movable);
+        if(movable){y=y+increment};
         break;
       case(" "):
         //console.log("space was pressed");
