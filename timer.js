@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-  var score = 0           
+  score = 0;
+  lives = 3;
   var myVar=setInterval(function () {myTimer()}, 25);
 
   // THIS IS THE CODE THAT RUNS ONLY ON START UP
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //drawDots();
     //drawEnemy();
     //drawScore();
+    //drawLives();
   }   
 })
 

@@ -17,12 +17,44 @@ function initializeLibrary(){
   [30,118],[130,118],[250,118],[310,118],[435,118],[535,118],
   [30,145],[50,145],[70,145],[90,145],[110,145],[130,145],[150,145],[170,145],[190,145],[220,145],[240,145],[260,145],[280,145],[300,145],[320,145],[340,145], [360,145],[380,145],[400,145],[420,145],[440,145], [460,145],[480,145],[500,145],[520,145],[535,145],
   [30,560],[60,560],[80,560],[100,560],[120,560],[140,560],[160,560],[180,560],[200,560],[220,560],[240,560],[260,560],[280,560],[300,560],[320,560],[340,560],[360,560],[380,560],[400,560],[420,560],[440,560],[460,560],[480,560],[500,560],[520,560],[540,560]
-  ];6
+  ];
 
   pacRects = [[60,60,60,40],[160,60,80,40],[340,60,80,40],[460,60,60,40]];
 }
 function clear(){
   ctx.clearRect(0, 0, WIDTH, HEIGHT);
+}
+function drawLives(){
+  ctx.font="30px ARCADE";             // Write the word "lives"
+  ctx.strokeStyle = 'white';           // at the bottom of the screen
+  ctx.strokeText("LIVES: ",10,615);   // in white arcade font.
+  radiusPacman = 13;
+  var colorPacman  = "yellow";
+  ctx.beginPath();
+  ctx.moveTo(115,605);
+  ctx.arc(115,605,radiusPacman,ang1,ang2,pacwise);  // x and y are the circle centre
+  ctx.lineTo(115,605);
+  ctx.fillStyle=colorPacman;
+  ctx.fill();
+  ctx.closePath;
+if(lives>1){
+  ctx.beginPath();
+  ctx.moveTo(145,605);
+  ctx.arc(145,605,radiusPacman,ang1,ang2,pacwise);  // x and y are the circle centre
+  ctx.lineTo(145,605);
+  ctx.fillStyle=colorPacman;
+  ctx.fill();
+  ctx.closePath;
+}
+if(lives>2){
+  ctx.beginPath();
+  ctx.moveTo(175,605);
+  ctx.arc(175,605,radiusPacman,ang1,ang2,pacwise);  // x and y are the circle centre
+  ctx.lineTo(175,605);
+  ctx.fillStyle=colorPacman;
+  ctx.fill();
+  ctx.closePath;
+}
 }
 function drawBackGroudImage(){
   MazeBackground = new Image();
