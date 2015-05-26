@@ -10,10 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // console.log("the timer function");
     clear();
     drawBackGroudImage();
-    //drawRects();
-    //mirrorDown();
     pacman();
-    //drawBackground();
     drawDots();
     drawEnemy();
 

@@ -9,12 +9,13 @@ function initializeLibrary(){
   ang1    = Math.PI * 0.25;
   ang2    = Math.PI * 1.75;
   pacwise = false;
+  score   = 0;
   console.log("and this is from the initializeLibrary");
   pacDots = [
-  [40,40],[60,40],[80,40],[100,40],[120,40],[140,40],[160,40],[180,40],[200,40],[220,40],[240,40],[260,40], [360,40],[380,40],[400,40],[420,40],[440,40], [460,40],[480,40],[500,40],[520,40],[540,40],
-  [40,60],[140,60],[260,60],[320,60],[440,60],[540,60],
-  [40,600],[60,600],[80,600],[100,600],[120,600],[140,600],[160,600],[180,600],[200,600],[220,600],[240,600],[260,600],[280,600],[300,600],[320,600],[340,600],[360,600],[380,600],[400,600],[420,600],[440,600],[460,600],[480,600],[500,600],[520,600],[540,600]
-  ];
+  [33,78],[80,78],[80,78],[100,78],[120,78],[140,78],[160,78],[180,78],[200,78],[220,78],[240,78],[260,78], [360,78],[380,78],[400,78],[420,78],[440,78], [460,78],[480,78],[500,78],[520,78],[540,78],
+  [33,98],[140,98],[260,98],[320,98],[440,98],[540,98],
+  [33,560],[60,560],[80,560],[100,560],[120,560],[140,560],[160,560],[180,560],[200,560],[220,560],[240,560],[260,560],[280,560],[300,560],[320,560],[340,560],[360,560],[380,560],[400,560],[420,560],[440,560],[460,560],[480,560],[500,560],[520,560],[540,560]
+  ];6
 
   pacRects = [[60,60,60,40],[160,60,80,40],[340,60,80,40],[460,60,60,40]];
 }
@@ -92,7 +93,7 @@ function canMove(direction){
         var height    = 5;
     }
     var imageData = ctx.getImageData(topLeftX, topLeftY, width, height).data;
-  // console.log(imageData);
+    // console.log(imageData);
   for (i=0; i<imageData.length; i+=4){
     //console.log(i, imageData[i]);
     // iterate throught the array reading rgb(a) and determining colour.
@@ -104,6 +105,17 @@ function canMove(direction){
     };
   };
   return movable;
+}
+
+function collision(){
+// this function tests if the pacman xy coordinates match a pacdot coordinate 
+// and if so eats it.  Tolerance level is the radius of the pacman.
+for (i=0; i<pacDots.length; i+=1){
+  if ((x-radiusPacman) < pacDots[i][0] && (x+radiusPacman) > pacDots[i][0] && (y-radiusPacman)<pacDots[i][1] && (y+radiusPacman)>pacDots[i][1]){
+    pacDots.splice(i,1);    // take away the pac dot if it is eaten
+    score = score + 10;
+  }
+}
 }
 
 

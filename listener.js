@@ -15,10 +15,11 @@ document.addEventListener('DOMContentLoaded', function () {
         ang1 = 0.75 *Math.PI;
         ang2 = 1.25 *Math.PI;
         pacwise = true;
-        canMove(direction);
         direction = "left";
+        canMove(direction);
         console.log("left" + movable);
         if (movable) {x = x - increment};
+        collision();
         break;
       case("'"):
         //console.log("right was pressed");
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
         canMove(direction);
         console.log("right" + movable);
         if (movable){x=x+increment};
+        collision();
         break;
       case("&"):
         //console.log("up was pressed");
@@ -39,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         canMove(direction);
         console.log("up" + movable);
         if(movable){y=y-increment};
+        collision();
         break;
       case("("):
         //console.log("down was pressed");
@@ -49,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
         canMove(direction);
         console.log("down"+movable);
         if(movable){y=y+increment};
+        collision();
         break;
       case(" "):
         //console.log("space was pressed");
