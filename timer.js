@@ -11,11 +11,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // console.log("the timer function");
     clear();
     drawBackGroudImage();
-    pacman();
-    //drawDots();
-    //drawEnemy();
-    //drawScore();
-    //drawLives();
+    //MazeBackground.onload=function(){
+      pacman();
+      drawDots();
+      drawGhost();
+      drawScore();
+      drawLives();
+      moveGhostRand();
+    // }
   }   
 })
 

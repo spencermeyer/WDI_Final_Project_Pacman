@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
         pacwise = true;
         direction = "left";
         //console.log("left" + canMove(direction));
-        if (canMove(direction)) {x = x - increment};
+        if (canMove(direction,x,y)) {x = x - increment};
         collision();
         break;
       case("'"):
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         pacwise = false;
         direction = "right";
         //console.log("right" + canMove(direction));
-        if (canMove(direction)){x=x+increment};
+        if (canMove(direction,x,y)){x=x+increment};
         collision();
         break;
       case("&"):
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         pacwise  = true;
         direction = "up";
         //console.log("up" + canMove(direction));
-        if(canMove(direction)){y=y-increment};
+        if(canMove(direction,x,y)){y=y-increment};
         collision();
         break;
       case("("):
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
         pacwise = false;
         direction = "down";
         //console.log("down"+canMove(direction));
-        if(canMove(direction)){y=y+increment};
+        if(canMove(direction,x,y)){y=y+increment};
         collision();
         break;
       case(" "):
