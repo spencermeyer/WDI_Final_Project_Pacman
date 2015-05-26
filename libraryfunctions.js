@@ -12,9 +12,11 @@ function initializeLibrary(){
   score   = 0;
   console.log("and this is from the initializeLibrary");
   pacDots = [
-  [33,78],[80,78],[80,78],[100,78],[120,78],[140,78],[160,78],[180,78],[200,78],[220,78],[240,78],[260,78], [360,78],[380,78],[400,78],[420,78],[440,78], [460,78],[480,78],[500,78],[520,78],[540,78],
-  [33,98],[140,98],[260,98],[320,98],[440,98],[540,98],
-  [33,560],[60,560],[80,560],[100,560],[120,560],[140,560],[160,560],[180,560],[200,560],[220,560],[240,560],[260,560],[280,560],[300,560],[320,560],[340,560],[360,560],[380,560],[400,560],[420,560],[440,560],[460,560],[480,560],[500,560],[520,560],[540,560]
+  [30,78],[50,78],[70,78],[90,78],[110,78],[130,78],[150,78],[170,78],[190,78],[220,78],[240,78],[260,78],[280,78],[300,78],[320,78],[340,78], [360,78],[380,78],[400,78],[420,78],[440,78], [460,78],[480,78],[500,78],[520,78],[535,78],
+  [30,98],[130,98],[250,98],[310,98],[435,98],[535,98],
+  [30,118],[130,118],[250,118],[310,118],[435,118],[535,118],
+  [30,145],[50,145],[70,145],[90,145],[110,145],[130,145],[150,145],[170,145],[190,145],[220,145],[240,145],[260,145],[280,145],[300,145],[320,145],[340,145], [360,145],[380,145],[400,145],[420,145],[440,145], [460,145],[480,145],[500,145],[520,145],[535,145],
+  [30,560],[60,560],[80,560],[100,560],[120,560],[140,560],[160,560],[180,560],[200,560],[220,560],[240,560],[260,560],[280,560],[300,560],[320,560],[340,560],[360,560],[380,560],[400,560],[420,560],[440,560],[460,560],[480,560],[500,560],[520,560],[540,560]
   ];6
 
   pacRects = [[60,60,60,40],[160,60,80,40],[340,60,80,40],[460,60,60,40]];
@@ -36,7 +38,6 @@ function drawRects(){
     ctx.closePath;
   }
 }
-
 function pacman(){
   radiusPacman = 13;
   var colorPacman  = "yellow";
@@ -67,55 +68,65 @@ function canMove(direction){
     // Setup detection and disable movement if blue detected.
     // Dependent on the speed of pacman
     // Dependent on the height of pacman
-    movable       = true;            // set true until blue detected
     // imageData arguments are: top left x and y coordinates of the detecting 
     // rectangle and the detecting rectangle width and height.
     switch(direction){
       case("left"):
-        var topLeftX  = x-(radiusPacman + width);
-        var topLeftY  = y-(radiusPacman);
-        var width     = 5;
-        var height    = radiusPacman*2;
+      var width     = 10;
+      var height    = radiusPacman*2;
+      var topLeftX  = x-(radiusPacman+width);
+      console.log("x=",x,"top left x = ", topLeftX, direction, "radiusPacman",radiusPacman);
+      var topLeftY  = y-(radiusPacman);
+      break;
       case("right"):
-        var topLeftX  = x+(radiusPacman);
-        var topLeftY  = y-(radiusPacman);
-        var width     = 5;
-        var height    = radiusPacman*2;
+      var width     = 10;
+      var height    = radiusPacman*2;
+      var topLeftX  = x+(radiusPacman);
+      console.log("x=",x,"top left x = ", topLeftX, direction);
+      var topLeftY  = y-(radiusPacman);
+      break;
       case("up"):
-        var topLeftX  = x-(radiusPacman-width);
-        var topLeftY  = y-(radiusPacman+width);
-        var width     = radiusPacman*2;
-        var height    = 5;
+      var width     = radiusPacman*2;
+      var height    = 10;
+      var topLeftX  = x-(radiusPacman);
+      var topLeftY  = y-(radiusPacman+width);
+      break;
       case("down"):
-        var topLeftX  = x-(radiusPacman);
-        var topLeftY  = y+(radiusPacman);
-        var width     = radiusPacman*2;
-        var height    = 5;
+      var width     = radiusPacman*2;
+      var height    = 10;
+      var topLeftX  = x-(radiusPacman);
+      var topLeftY  = y+(radiusPacman);
+      break;
     }
     var imageData = ctx.getImageData(topLeftX, topLeftY, width, height).data;
     // console.log(imageData);
-  for (i=0; i<imageData.length; i+=4){
-    //console.log(i, imageData[i]);
-    // iterate throught the array reading rgb(a) and determining colour.
-    if(imageData[i]<100 && imageData[i+1]<100 && imageData[i+2]>180){
-      //console.log("blue detected !!!!");
-      movable = false;
-    }else{
-      movable = true;
+    for (i=0; i<imageData.length; i+=4){
+      //console.log(i, imageData[i]);
+      // iterate throught the array reading rgb(a) and determining colour.
+      if(imageData[i]<100 && imageData[i+1]<100 && imageData[i+2]>180){
+        console.log("blue detected !!!!");
+        return false;
+      }else{
+        return true;
+      };
     };
-  };
-  return movable;
-}
+  }
 
-function collision(){
+  function collision(){
 // this function tests if the pacman xy coordinates match a pacdot coordinate 
 // and if so eats it.  Tolerance level is the radius of the pacman.
 for (i=0; i<pacDots.length; i+=1){
   if ((x-radiusPacman) < pacDots[i][0] && (x+radiusPacman) > pacDots[i][0] && (y-radiusPacman)<pacDots[i][1] && (y+radiusPacman)>pacDots[i][1]){
-    pacDots.splice(i,1);    // take away the pac dot if it is eaten
-    score = score + 10;
+      pacDots.splice(i,1);    // take away the pac dot if it is eaten
+      score = score + 10;
+    }
   }
 }
+function drawScore(){
+  ctx.font="30px ARCADE";
+  ctx.strokeStyle = 'white';
+  ctx.strokeText("Score: "+score,10,40);
 }
+
 
 

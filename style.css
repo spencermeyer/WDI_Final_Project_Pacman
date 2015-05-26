@@ -1,4 +1,8 @@
 #canvas{
   background-color: grey;
 }
+@font-face {
+    font-family: 'ARCADE';
+    src: url('ARCADE.ttf');
+}
 

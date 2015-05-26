@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
     clear();
     drawBackGroudImage();
     pacman();
-    drawDots();
-    drawEnemy();
-
+    //drawDots();
+    //drawEnemy();
+    //drawScore();
   }   
 })
 

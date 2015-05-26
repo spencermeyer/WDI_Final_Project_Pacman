@@ -1,4 +1,4 @@
-var increment = 6;
+var increment = 5;
 var score = 0;
 direction = "right";
 
@@ -16,9 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
         ang2 = 1.25 *Math.PI;
         pacwise = true;
         direction = "left";
-        canMove(direction);
-        console.log("left" + movable);
-        if (movable) {x = x - increment};
+        //console.log("left" + canMove(direction));
+        if (canMove(direction)) {x = x - increment};
         collision();
         break;
       case("'"):
@@ -27,9 +26,8 @@ document.addEventListener('DOMContentLoaded', function () {
         ang2 = 1.75*Math.PI;
         pacwise = false;
         direction = "right";
-        canMove(direction);
-        console.log("right" + movable);
-        if (movable){x=x+increment};
+        //console.log("right" + canMove(direction));
+        if (canMove(direction)){x=x+increment};
         collision();
         break;
       case("&"):
@@ -38,9 +36,8 @@ document.addEventListener('DOMContentLoaded', function () {
         ang2 = 1.75*Math.PI;
         pacwise  = true;
         direction = "up";
-        canMove(direction);
-        console.log("up" + movable);
-        if(movable){y=y-increment};
+        //console.log("up" + canMove(direction));
+        if(canMove(direction)){y=y-increment};
         collision();
         break;
       case("("):
@@ -49,9 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
         ang2 = 2.25*Math.PI;
         pacwise = false;
         direction = "down";
-        canMove(direction);
-        console.log("down"+movable);
-        if(movable){y=y+increment};
+        //console.log("down"+canMove(direction));
+        if(canMove(direction)){y=y+increment};
         collision();
         break;
       case(" "):
