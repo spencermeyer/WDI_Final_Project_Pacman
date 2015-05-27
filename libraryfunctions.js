@@ -8,21 +8,23 @@ function initializeLibrary(){
   y       = 200;
   dirg1   = "down";                       // initialise direction ghost
   incrementg  = 1;                        // ghost 1 movement distance
-  xg1     = 20;                           // starting position ghost 1
-  yg1     = 78;                           // starting position ghost 1
+  xg1     = 430;                           // starting position ghost 1
+  yg1     = 430;                           // starting position ghost 1
+  dirg1   = "right";                      // initialize a ghost direction
   ang1    = Math.PI * 0.25;               // initialize a drawing angle st
   ang2    = Math.PI * 1.75;               // initialize a drawing angle fin
   pacwise = false;                        // initialise a drawing direction
   score   = 0;                            // cumulative score
-  lives = 3;                              // no lives left
+  lives = 3;                              // number of lives left initilise
   console.log("and this is from the initializeLibrary");
-  // pacRects = [[60,60,60,40],[160,60,80,40],[340,60,80,40],[460,60,60,40]];
-  //DO NOT NEED PACRECTS DELETE THE ABOVE AFTER TESTING.
+  
 }
 function clear(){
   ctx.clearRect(0, 0, WIDTH, HEIGHT);
 }
 function drawLives(){
+// This function draws one, two, or three right facing pacs at the 
+// bottom of the screen depending upon the number of lives left.
   ctx.font="30px ARCADE";             // Write the word "lives"
   ctx.strokeStyle = 'white';           // at the bottom of the screen
   ctx.strokeText("LIVES: ",10,615);   // in white arcade font.
@@ -30,7 +32,7 @@ function drawLives(){
   var colorPacman  = "yellow";
   ctx.beginPath();
   ctx.moveTo(115,605);
-  ctx.arc(115,605,radiusPacman,ang1,ang2,pacwise);  // x and y are the circle centre
+  ctx.arc(115,605,radiusPacman,0.25*Math.PI,1.75*Math.PI,false);  // x and y are the circle centre
   ctx.lineTo(115,605);
   ctx.fillStyle=colorPacman;
   ctx.fill();
@@ -38,7 +40,7 @@ function drawLives(){
   if(lives>1){
     ctx.beginPath();
     ctx.moveTo(145,605);
-  ctx.arc(145,605,radiusPacman,ang1,ang2,pacwise);  // x and y are the circle centre
+  ctx.arc(145,605,radiusPacman,0.25*Math.PI,1.75*Math.PI,false);  // x and y are the circle centre
   ctx.lineTo(145,605);
   ctx.fillStyle=colorPacman;
   ctx.fill();
@@ -47,7 +49,7 @@ function drawLives(){
 if(lives>2){
   ctx.beginPath();
   ctx.moveTo(175,605);
-  ctx.arc(175,605,radiusPacman,ang1,ang2,pacwise);  // x and y are the circle centre
+  ctx.arc(175,605,radiusPacman,0.25*Math.PI,1.75*Math.PI,false);  // x and y are the circle centre
   ctx.lineTo(175,605);
   ctx.fillStyle=colorPacman;
   ctx.fill();
@@ -55,25 +57,11 @@ if(lives>2){
 }
 }
 function drawBackGroundImage(){
+  // This puts the background image onto the canvas.
+  // Important: do not change the dimensions.
   MazeBackground = new Image();
   MazeBackground.src = "Pac_man_background_image_clean.png";
   ctx.drawImage(MazeBackground,0,0,560,620);
-
-  // MazeBackground = new Image();
-  // MazeBackground.src = "Pac_man_background_image_clean.png";
-  // return MazeBackground;
-
-  // canvas = document.getElementById("canvas"),
-  // ctx = canvas.getContext("2d");
-  // background = new Image();
-  // background.src = "Pac_man_background_image_clean.png";
-  // background.onload = function(){
-  //   ctx.drawImage(background,0,0,560,620);   
-  // }
-
-  // canvas = document.getElementById("canvas");
-  // canvas.style.backgroundImage = "url(Pac_man_background_image_clean.png)";
-  // canvas.style.backgroundRepeat = "no-repeat";
 }
 function drawRects(){
   for (i=0; i<pacRects.length; i++){
@@ -93,6 +81,7 @@ function pacman(){
   ctx.fillStyle=colorPacman;
   ctx.fill();
   ctx.closePath;
+  console.log(x,y);
 }
 function drawDots(){
   for (i=0; i<pacDots.length; i++){
@@ -110,41 +99,39 @@ function drawGhost(){
   ctx.drawImage(enemy,xg1,yg1,23,23);
 }
 
-// Chooses direction
-// Moves constantly in that direction until it hits a wall
-// Changes direction 
-// Moves constantly in that direction until it hits another wall
 function moveGhostRand(){
-  // Choose random direction
+  // Starts from the initialised direction, then moves until it finds
+  // a wall then changes to a random direction then repeats.
   var directions = ['up', 'down', 'right', 'left'];  
-  var dirg1 = directions[Math.floor(Math.random() * directions.length)];
-
-  if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
-    xg1 = xg1 - incrementg
-  }
   
+  if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
+    xg1 = xg1 - incrementg;
+    console.log("moving left");
+  }
   if (dirg1 === "right" && canMove(dirg1,xg1,yg1)) {
-    xg1 = xg1 + incrementg
+    xg1 = xg1 + incrementg;
+    console.log("moving right");
   }
-
   if (dirg1 === "up" && canMove(dirg1,xg1,yg1)) {
-    yg1 = yg1 + incrementg
+    yg1 = yg1 + incrementg;
+    console.log('moving up');
   }
-
   if (dirg1 === "down" && canMove(dirg1,xg1,yg1)) {
-    yg1 = yg1 - incrementg
+    yg1 = yg1 - incrementg;
+    console.log("moving down");
+  }
+  else {
+    dirg1 = directions[Math.floor(Math.random() * directions.length)];
+    console.log("canmove is false changing direction to", dirg1);
   }
 }
 
 
 function canMove(direction,xx,yy){
-    // Setup detection and disable movement if blue detected.
-    // Dependent on the speed of object
-    // Dependent on the height of object
-    // imageData arguments are: top left x and y coordinates of the detecting 
-    // rectangle and the detecting rectangle width and height.
-    radiusPacman = 13;
-    //TAKE THIS OUT LATER(RADIU PAS)
+    // This function scans ahead of the movement direction and sees if there
+    // is one pixel of blue and if so stops movement in that direction.
+    // This is used by the pacman and by the ghosts.
+    // First set up the directions and locations of the scan box.   
     switch(direction){
       case("left"):
       var width     = 6;
@@ -173,13 +160,13 @@ function canMove(direction,xx,yy){
       break;
     }
     imageData = ctx.getImageData(topLeftX, topLeftY, width, height).data;
-    //console.log(topLeftX, topLeftY, width, height);
-    //console.log(imageData);
+    // Now get the image data for scanning.
+    // console.log(topLeftX, topLeftY, width, height); 
     // now set variable blueFound to false and iterate through the array, and 
     // set blueFound to true if ANY of the pixels are blue.
     var blueFound = false;
     for (i=0; i<imageData.length; i+=4){
-      //console.log("image data length", imageData.length);
+      // console.log("image data length", imageData.length);
       // iterate throught the array reading rgb(a) and determining colour.
       if(imageData[i]<100 && imageData[i+1]<100 && imageData[i+2]>165){
         blueFound = true; 
@@ -195,12 +182,12 @@ function canMove(direction,xx,yy){
   }
 
   function collision(){
-// this function tests if the pacman xy coordinates match a pacdot coordinate 
+// This function tests if the pacman xy coordinates match a pacdot coordinate 
 // and if so eats it.  Tolerance level is the radius of the pacman.
 for (i=0; i<pacDots.length; i+=1){
   if ((x-radiusPacman) < pacDots[i][0] && (x+radiusPacman) > pacDots[i][0] && (y-radiusPacman)<pacDots[i][1] && (y+radiusPacman)>pacDots[i][1]){
       pacDots.splice(i,1);    // take away the pac dot if it is eaten
-      score = score + 10;
+      score = score + 10;     // update the score that is then written to screen
     }
   }
 }
@@ -209,10 +196,4 @@ function drawScore(){
   ctx.strokeStyle = 'white';
   ctx.strokeText("Score: "+score,10,40);
 }
-
-
-
-
-
-
 
