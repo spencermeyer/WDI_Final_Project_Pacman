@@ -193,7 +193,7 @@ function canMove(direction,xx,yy){
     }
   }
 
-  function collision(){
+function collision(){
 // This function tests if the pacman xy coordinates match a pacdot coordinate 
 // and if so eats it.  Tolerance level is the radius of the pacman.
 for (i=0; i<pacDots.length; i+=1){
@@ -202,7 +202,14 @@ for (i=0; i<pacDots.length; i+=1){
       score = score + 10;     // update the score that is then written to screen
     }
   }
+// and now to test if there is a collision between the pacman and a ghost
+// and loose a life if this happens.
+if ( Math.abs(x-xg1)<2*radiusPacman && Math.abs(y-yg1)<2*radiusPacman  )  {
+   lives = lives -1 ;    // reduce the lives by one
+  }
 }
+
+
 function drawScore(){
   ctx.lineWidth = 1;
   ctx.font="30px ARCADE";
