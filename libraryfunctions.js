@@ -7,7 +7,7 @@ function initializeLibrary(){
   x       = 200;
   y       = 200;
   dirg1   = "down";
-  incrementg  = 1;
+  incrementg  = 1; 
   xg1     = 20;
   yg1     = 78;
   ang1    = Math.PI * 0.25;
@@ -34,9 +34,9 @@ function drawLives(){
   ctx.fillStyle=colorPacman;
   ctx.fill();
   ctx.closePath;
-if(lives>1){
-  ctx.beginPath();
-  ctx.moveTo(145,605);
+  if(lives>1){
+    ctx.beginPath();
+    ctx.moveTo(145,605);
   ctx.arc(145,605,radiusPacman,ang1,ang2,pacwise);  // x and y are the circle centre
   ctx.lineTo(145,605);
   ctx.fillStyle=colorPacman;
@@ -53,12 +53,24 @@ if(lives>2){
   ctx.closePath;
 }
 }
-function drawBackGroudImage(){
-  MazeBackground = new Image();
-  MazeBackground.src = "Pac_man_background_image_clean.png";
-  ctx.drawImage(MazeBackground,0,0,560,620);
-}
+function drawBackGroundImage(){
+  // MazeBackground = new Image();
+  // MazeBackground.src = "Pac_man_background_image_clean.png";
+  // return MazeBackground;
 
+  // canvas = document.getElementById("canvas"),
+  // ctx = canvas.getContext("2d");
+  // background = new Image();
+  // background.src = "Pac_man_background_image_clean.png";
+  // background.onload = function(){
+  //   ctx.drawImage(background,0,0,560,620);   
+  // }
+
+  // canvas = document.getElementById("canvas");
+  // canvas.style.backgroundImage = "url(Pac_man_background_image_clean.png)";
+  // canvas.style.backgroundRepeat = "no-repeat";
+
+}
 function drawRects(){
   for (i=0; i<pacRects.length; i++){
     ctx.strokeStyle = '#00008F';
@@ -107,13 +119,14 @@ function moveGhostRand(){
 }
 
 
-
 function canMove(direction,xx,yy){
     // Setup detection and disable movement if blue detected.
     // Dependent on the speed of object
     // Dependent on the height of object
     // imageData arguments are: top left x and y coordinates of the detecting 
     // rectangle and the detecting rectangle width and height.
+    radiusPacman = 13;
+    //TAKE THIS OUT LATER(RADIU PAS)
     switch(direction){
       case("left"):
       var width     = 6;
@@ -141,7 +154,7 @@ function canMove(direction,xx,yy){
       var topLeftY  = yy+(radiusPacman);
       break;
     }
-    var imageData = ctx.getImageData(topLeftX, topLeftY, width, height).data;
+    imageData = ctx.getImageData(topLeftX, topLeftY, width, height).data;
     console.log(topLeftX, topLeftY, width, height);
     //console.log(imageData);
     // now set variable blueFound to false and iterate through the array, and 
