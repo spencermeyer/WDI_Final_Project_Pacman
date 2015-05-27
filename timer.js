@@ -7,8 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // THIS IS THE CODE THAT RUNS ONLY ON START UP
 initializeLibrary();
 
-drawBackGroundImage();
-
+// drawBackGroundImage();
 // backgroundImage = drawBackGroundImage();
 // backgroundImage.onload = function(){
   // canvas = document.getElementById("canvas");
@@ -19,26 +18,28 @@ drawBackGroundImage();
 // THIS FUNCTION IS FOR REPETITIVE EXECUTION HERE
 function myTimer() {
   console.log("the timer function");
-  // clear();
-  // drawBackGroundImage();
+  clear();
+  drawBackGroundImage();
 
   // backgroundImage.onload = function(){
   //   console.log("this is background image loaded");
-  //   //pacman();  
-  //   //console.log("running a test canMove");
-  //   //canMove(direction,x,y);
-  //   console.log("just run pacman");
-  //   //drawDots();
-  //   drawGhost();
-  //   console.log("just ran drawGost");
-  //   //drawScore();
-  //   //drawLives();
-  //   console.log("about to run moveGhostRand");
-  //   moveGhostRand();
-  //   console.log("just ran moveGhostRand");
-  //   // 
+    pacman();  
+    console.log("just run pacman");
+    
+    drawDots();
+    
+    drawGhost();
+    console.log("just ran drawGost");
+
+    moveGhostRand();
+    console.log("just ran moveGhostRand");
+
+    drawScore();
+    drawLives();
+    
+    // 
   // }
-}
+  }
 
 // Then call myVar which calls the timer containing the repetitive events
 var myVar=setInterval(function () {myTimer()}, 25);

@@ -54,6 +54,10 @@ if(lives>2){
 }
 }
 function drawBackGroundImage(){
+  MazeBackground = new Image();
+  MazeBackground.src = "Pac_man_background_image_clean.png";
+  ctx.drawImage(MazeBackground,0,0,560,620);
+
   // MazeBackground = new Image();
   // MazeBackground.src = "Pac_man_background_image_clean.png";
   // return MazeBackground;
@@ -105,17 +109,31 @@ function drawGhost(){
   enemy.src = "Ghost_1.png";
   ctx.drawImage(enemy,xg1,yg1,23,23);
 }
+
+// Chooses direction
+// Moves constantly in that direction until it hits a wall
+// Changes direction 
+// Moves constantly in that direction until it hits another wall
 function moveGhostRand(){
-  choice = Math.random();
-  if(0<choice<0.25){dirg1 = "up"}
-  else if(0.25<choice<0.5){dirg1 = "down"}
-  else if(0.5<choice<0.75){dirg1 = "right"}
-  else {dirg1 = "left"};
-  //console.log("ghost direction", dirg1, canMove(dirg1,xg1,yg1));
-  if (dirg1 = "left" && canMove(dirg1,xg1,yg1)) {xg1 = xg1 - incrementg}
-  if (dirg1 = "right" && canMove(dirg1,xg1,yg1)) {xg1 = xg1 + incrementg}
-  else if (dirg1 = "down" && canMove(dirg1,xg1,yg1)) {yg1 = yg1 + incrementg}
-  else if (dirg1 = "left" && canMove(dirg1,xg1,yg1)) {yg1 = yg1 - incrementg};
+  // Choose random direction
+  var directions = ['up', 'down', 'right', 'left'];  
+  var dirg1 = directions[Math.floor(Math.random() * directions.length)];
+
+  if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
+    xg1 = xg1 - incrementg
+  }
+  
+  if (dirg1 === "right" && canMove(dirg1,xg1,yg1)) {
+    xg1 = xg1 + incrementg
+  }
+
+  if (dirg1 === "up" && canMove(dirg1,xg1,yg1)) {
+    yg1 = yg1 + incrementg
+  }
+
+  if (dirg1 === "down" && canMove(dirg1,xg1,yg1)) {
+    yg1 = yg1 - incrementg
+  }
 }
 
 
