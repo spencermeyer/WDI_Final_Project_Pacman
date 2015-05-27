@@ -17,8 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
         pacwise = true;
         direction = "left";
         //console.log("left" + canMove(direction));
-        if (canMove(direction,x,y)) {x = x - increment};
-        collision();
         break;
       case("'"):
         //console.log("right was pressed");
@@ -27,8 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
         pacwise = false;
         direction = "right";
         //console.log("right" + canMove(direction));
-        if (canMove(direction,x,y)){x=x+increment};
-        collision();
         break;
       case("&"):
         //console.log("up was pressed");
@@ -37,8 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
         pacwise  = true;
         direction = "up";
         //console.log("up" + canMove(direction));
-        if(canMove(direction,x,y)){y=y-increment};
-        collision();
         break;
       case("("):
         //console.log("down was pressed");
@@ -47,8 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
         pacwise = false;
         direction = "down";
         //console.log("down"+canMove(direction));
-        if(canMove(direction,x,y)){y=y+increment};
-        collision();
         break;
       case(" "):
         //console.log("space was pressed");

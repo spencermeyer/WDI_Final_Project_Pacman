@@ -83,6 +83,26 @@ function pacman(){
   ctx.closePath;
   // console.log(x,y);
 }
+function movePacMan(){
+  switch(direction){
+  case("left"):
+    if (canMove(direction,x,y)) {x = x - increment};
+    collision();
+    break;
+  case("right"):
+    if (canMove(direction,x,y)){x=x+increment};
+    collision();
+  break;
+  case("up"):
+    if(canMove(direction,x,y)){y=y-increment};
+    collision();
+  break;
+  case("down"):
+    if(canMove(direction,x,y)){y=y+increment};
+    collision();
+  break;
+}
+}
 function drawDots(){
   for (i=0; i<pacDots.length; i++){
     // console.log("example pacdot", pacDots[i][0], pacDots[i][1]);
@@ -107,8 +127,8 @@ function drawGate(){
   ctx.strokeStyle = '#0000FF';
   if(score<100){
     ctx.stroke();
-  ctx.closePath;
-  console.log("linewidth", ctx.lineWidth);
+    ctx.closePath;
+    console.log("linewidth", ctx.lineWidth);
   }
 }
 
@@ -193,7 +213,7 @@ function canMove(direction,xx,yy){
     }
   }
 
-function collision(){
+  function collision(){
 // This function tests if the pacman xy coordinates match a pacdot coordinate 
 // and if so eats it.  Tolerance level is the radius of the pacman.
 for (i=0; i<pacDots.length; i+=1){
@@ -206,7 +226,7 @@ for (i=0; i<pacDots.length; i+=1){
 // and loose a life if this happens.
 if ( Math.abs(x-xg1)<2*radiusPacman && Math.abs(y-yg1)<2*radiusPacman  )  {
    lives = lives -1 ;    // reduce the lives by one
-  }
+ }
 }
 
 
