@@ -85,23 +85,23 @@ function pacman(){
 }
 function movePacMan(){
   switch(direction){
-  case("left"):
+    case("left"):
     if (canMove(direction,x,y)) {x = x - increment};
     collision();
     break;
-  case("right"):
+    case("right"):
     if (canMove(direction,x,y)){x=x+increment};
     collision();
-  break;
-  case("up"):
+    break;
+    case("up"):
     if(canMove(direction,x,y)){y=y-increment};
     collision();
-  break;
-  case("down"):
+    break;
+    case("down"):
     if(canMove(direction,x,y)){y=y+increment};
     collision();
-  break;
-}
+    break;
+  }
 }
 function drawDots(){
   for (i=0; i<pacDots.length; i++){
@@ -214,19 +214,30 @@ function canMove(direction,xx,yy){
   }
 
   function collision(){
-// This function tests if the pacman xy coordinates match a pacdot coordinate 
-// and if so eats it.  Tolerance level is the radius of the pacman.
-for (i=0; i<pacDots.length; i+=1){
-  if ((x-radiusPacman) < pacDots[i][0] && (x+radiusPacman) > pacDots[i][0] && (y-radiusPacman)<pacDots[i][1] && (y+radiusPacman)>pacDots[i][1]){
+  // This function tests if the pacman xy coordinates match a pacdot coordinate 
+    // and if so eats it.  Tolerance level is the radius of the pacman.
+    for (i=0; i<pacDots.length; i+=1){
+      if ((x-radiusPacman) < pacDots[i][0] && (x+radiusPacman) > pacDots[i][0] && (y-radiusPacman)<pacDots[i][1] && (y+radiusPacman)>pacDots[i][1]){
       pacDots.splice(i,1);    // take away the pac dot if it is eaten
       score = score + 10;     // update the score that is then written to screen
     }
   }
-// and now to test if there is a collision between the pacman and a ghost
-// and loose a life if this happens.
-if ( Math.abs(x-xg1)<2*radiusPacman && Math.abs(y-yg1)<2*radiusPacman  )  {
+  // and now to test if there is a collision between the pacman and a ghost
+  // and loose a life if this happens.
+  if ( Math.abs(x-xg1)<2*radiusPacman && Math.abs(y-yg1)<2*radiusPacman  )  {
    lives = lives -1 ;    // reduce the lives by one
+   setTimeout(function(){
+          drawDeath(); //  NEEDS SOME WORK.....
+        }, 2000);
  }
+}
+function drawDeath(){
+  ctx.lineWidth = 1;
+  ctx.font="50px ARCADE";
+  ctx.strokeStyle = 'white';
+  ctx.strokeText("LOOSE A LIFE !!!!!",150,350);
+  x = 200;              // reset position back to starting so that pac does
+  y = 200;              // not continuously loose life in same position
 }
 
 
