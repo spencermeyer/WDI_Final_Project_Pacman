@@ -21,13 +21,15 @@ function myTimer() {
     //console.log("just run pacman");
     drawDots();
     drawGhost();
+    drawGate();
     //console.log("just ran drawGost");
     moveGhostRand();
     //console.log("just ran moveGhostRand");
     drawScore();
     drawLives();
-    
     // 
+
+
   // }
   }
 

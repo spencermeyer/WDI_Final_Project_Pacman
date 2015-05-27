@@ -8,8 +8,8 @@ function initializeLibrary(){
   y       = 200;
   dirg1   = "down";                       // initialise direction ghost
   incrementg  = 1;                        // ghost 1 movement distance
-  xg1     = 430;                           // starting position ghost 1
-  yg1     = 430;                           // starting position ghost 1
+  xg1     = 270;                          // starting position ghost 1
+  yg1     = 290;                          // starting position ghost 1
   dirg1   = "right";                      // initialize a ghost direction
   ang1    = Math.PI * 0.25;               // initialize a drawing angle st
   ang2    = Math.PI * 1.75;               // initialize a drawing angle fin
@@ -17,8 +17,8 @@ function initializeLibrary(){
   score   = 0;                            // cumulative score
   lives = 3;                              // number of lives left initilise
   console.log("and this is from the initializeLibrary");
-  
 }
+
 function clear(){
   ctx.clearRect(0, 0, WIDTH, HEIGHT);
 }
@@ -81,7 +81,7 @@ function pacman(){
   ctx.fillStyle=colorPacman;
   ctx.fill();
   ctx.closePath;
-  console.log(x,y);
+  // console.log(x,y);
 }
 function drawDots(){
   for (i=0; i<pacDots.length; i++){
@@ -99,6 +99,19 @@ function drawGhost(){
   ctx.drawImage(enemy,xg1,yg1,23,23);
 }
 
+function drawGate(){
+  ctx.beginPath();
+  ctx.moveTo(260,270);
+  ctx.lineTo(300,270);
+  ctx.lineWidth = 7;
+  ctx.strokeStyle = '#0000FF';
+  if(score<100){
+    ctx.stroke();
+  ctx.closePath;
+  console.log("linewidth", ctx.lineWidth);
+  }
+}
+
 function moveGhostRand(){
   // Starts from the initialised direction, then moves until it finds
   // a wall then changes to a random direction then repeats.
@@ -106,26 +119,25 @@ function moveGhostRand(){
   
   if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
     xg1 = xg1 - incrementg;
-    console.log("moving left");
+    //console.log("moving left");
   }
   if (dirg1 === "right" && canMove(dirg1,xg1,yg1)) {
     xg1 = xg1 + incrementg;
-    console.log("moving right");
+    //console.log("moving right");
   }
   if (dirg1 === "up" && canMove(dirg1,xg1,yg1)) {
     yg1 = yg1 + incrementg;
-    console.log('moving up');
+    //console.log('moving up');
   }
   if (dirg1 === "down" && canMove(dirg1,xg1,yg1)) {
     yg1 = yg1 - incrementg;
-    console.log("moving down");
+    //console.log("moving down");
   }
   else {
     dirg1 = directions[Math.floor(Math.random() * directions.length)];
-    console.log("canmove is false changing direction to", dirg1);
+    //console.log("canmove is false changing direction to", dirg1);
   }
 }
-
 
 function canMove(direction,xx,yy){
     // This function scans ahead of the movement direction and sees if there
@@ -192,6 +204,7 @@ for (i=0; i<pacDots.length; i+=1){
   }
 }
 function drawScore(){
+  ctx.lineWidth = 1;
   ctx.font="30px ARCADE";
   ctx.strokeStyle = 'white';
   ctx.strokeText("Score: "+score,10,40);
