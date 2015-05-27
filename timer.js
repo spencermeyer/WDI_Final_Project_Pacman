@@ -1,8 +1,3 @@
-var backgroundImage;
-score = 0;
-lives = 3;
-//direction = "left";
-
 document.addEventListener('DOMContentLoaded', function () {
 // THIS IS THE CODE THAT RUNS ONLY ON START UP
 initializeLibrary();
@@ -17,23 +12,18 @@ initializeLibrary();
 
 // THIS FUNCTION IS FOR REPETITIVE EXECUTION HERE
 function myTimer() {
-  console.log("the timer function");
-  clear();
-  drawBackGroundImage();
-
-  // backgroundImage.onload = function(){
-  //   console.log("this is background image loaded");
+    // console.log("the timer function");
+    clear();
+    drawBackGroundImage();
+    // backgroundImage.onload = function(){
+    //   console.log("this is background image loaded");
     pacman();  
-    console.log("just run pacman");
-    
+    //console.log("just run pacman");
     drawDots();
-    
     drawGhost();
-    console.log("just ran drawGost");
-
+    //console.log("just ran drawGost");
     moveGhostRand();
-    console.log("just ran moveGhostRand");
-
+    //console.log("just ran moveGhostRand");
     drawScore();
     drawLives();
     

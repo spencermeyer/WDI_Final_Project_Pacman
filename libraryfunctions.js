@@ -6,14 +6,15 @@ function initializeLibrary(){
   r       = 50;
   x       = 200;
   y       = 200;
-  dirg1   = "down";
-  incrementg  = 1; 
-  xg1     = 20;
-  yg1     = 78;
-  ang1    = Math.PI * 0.25;
-  ang2    = Math.PI * 1.75;
-  pacwise = false;
-  score   = 0;
+  dirg1   = "down";                       // initialise direction ghost
+  incrementg  = 1;                        // ghost 1 movement distance
+  xg1     = 20;                           // starting position ghost 1
+  yg1     = 78;                           // starting position ghost 1
+  ang1    = Math.PI * 0.25;               // initialize a drawing angle st
+  ang2    = Math.PI * 1.75;               // initialize a drawing angle fin
+  pacwise = false;                        // initialise a drawing direction
+  score   = 0;                            // cumulative score
+  lives = 3;                              // no lives left
   console.log("and this is from the initializeLibrary");
   // pacRects = [[60,60,60,40],[160,60,80,40],[340,60,80,40],[460,60,60,40]];
   //DO NOT NEED PACRECTS DELETE THE ABOVE AFTER TESTING.
@@ -73,7 +74,6 @@ function drawBackGroundImage(){
   // canvas = document.getElementById("canvas");
   // canvas.style.backgroundImage = "url(Pac_man_background_image_clean.png)";
   // canvas.style.backgroundRepeat = "no-repeat";
-
 }
 function drawRects(){
   for (i=0; i<pacRects.length; i++){
@@ -173,7 +173,7 @@ function canMove(direction,xx,yy){
       break;
     }
     imageData = ctx.getImageData(topLeftX, topLeftY, width, height).data;
-    console.log(topLeftX, topLeftY, width, height);
+    //console.log(topLeftX, topLeftY, width, height);
     //console.log(imageData);
     // now set variable blueFound to false and iterate through the array, and 
     // set blueFound to true if ANY of the pixels are blue.
