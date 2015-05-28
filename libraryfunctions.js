@@ -31,6 +31,7 @@ function initializeLibrary(){
   ghost1alive = true;                     // can be killed by Pac when Pac is invinc
   ghost2alive = true;                     // can be killed by Pac when Pac is invinc
   ghost3alive = true;                     // can be killed by Pac when Pac is invinc
+  ghost4alive = true;                     // can be killed by Pac when Pac is invinc
 }
 
 function clear(){
@@ -168,6 +169,16 @@ function drawGhost(){
       enemy3.src = "Ghost_eyes.png";
     }
     ctx.drawImage(enemy3,xg3-12,yg3-12,24,24);
+    // draw the fourth ghost it is a different colour when alive
+     var enemy4 = new Image();
+     if (invincible && ghost4alive){
+       enemy4.src = "Ghost_5.png";
+     }else if (ghost3alive){
+       enemy4.src = "Ghost_4.png";
+     }else{
+       enemy4.src = "Ghost_eyes.png";
+     }
+     ctx.drawImage(enemy4,xg4-12,yg4-12,24,24);
 }
 
 function drawGate(){
@@ -247,6 +258,27 @@ function moveGhostRand(){
   }
   else {
     dirg3 = directions[Math.floor(Math.random() * directions.length)];
+    //console.log("canmove is false changing direction to", dirg1);
+  }
+  // Repeat for ghost 4
+  if (dirg4 === "left" && canMove(dirg4,xg4,yg4)) {
+      xg4 = xg4 - incrementg;
+    //console.log("true - ghost moving left");
+  }
+  else if (dirg4 === "right" && canMove(dirg4,xg4,yg4)) { 
+      xg4 = xg4 + incrementg;
+    //console.log("true - ghost moving right");
+  }
+  else if (dirg4 === "up" && canMove(dirg4,xg4,yg4)) {
+    yg4 = yg4 - incrementg;
+    //console.log("true - ghost moving up");
+  }
+  else if (dirg4 === "down" && canMove(dirg4,xg4,yg4)) {
+    yg4 = yg4 + incrementg;
+    //console.log("true - ghost moving down");
+  }
+  else {
+    dirg4 = directions[Math.floor(Math.random() * directions.length)];
     //console.log("canmove is false changing direction to", dirg1);
   }
 }
@@ -343,7 +375,7 @@ function canMove(directionF,xx,yy){
     drawDeath();
   };
 }
-  // check the same for ghost 2
+  // check the same for ghost 3
   if ( Math.abs(x-xg3)<2*radiusPacman && Math.abs(y-yg3)<2*radiusPacman  )  {
    if(invincible){
     ghost3alive = false
@@ -352,7 +384,15 @@ function canMove(directionF,xx,yy){
     drawDeath();
   };
 }
-
+  // check the same for ghost 4
+  if ( Math.abs(x-xg4)<2*radiusPacman && Math.abs(y-yg4)<2*radiusPacman  )  {
+   if(invincible){
+    ghost4alive = false
+  }else{
+    lives = lives -1 ;       // reduce the lives if pacman is not invincible
+    drawDeath();
+  };
+}
 }
 
 function drawDeath(){
