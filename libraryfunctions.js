@@ -6,16 +6,22 @@ function initializeLibrary(){
   r           = 50;
   x           = 200;
   y           = 200;
-  increment = 5;
-  score = 0;
-  direction = "right";
+  increment   = 5;
+  score       = 0;
+  direction   = "right";
   incrementg  = 4;                        // ghost 1 movement distance
-  xg1         = 270;                      // starting position ghost 1  270
+  xg1         = 270;                      // starting position ghost 1
   yg1         = 290;                      // starting position ghost 1
   xg2         = 280;                      // starting position ghost 2
   yg2         = 290;                      // starting position ghost 2
+  xg3         = 265;                      // starting position ghost 3
+  yg3         = 292;                      // starting position ghost 3
+  xg4         = 287;                      // starting position ghost 4
+  yg4         = 294;                      // starting position ghost 4
   dirg1       = "right";                  // initialize ghost 1 direction
   dirg2       = "up";                     // initialize ghost 2 direction
+  dirg3       = "left";                   // initialize ghost 2 direction
+  dirg4       = "down";                   // initialize ghost 2 direction
   ang1        = Math.PI * 0.25;           // initialize a drawing angle st
   ang2        = Math.PI * 1.75;           // initialize a drawing angle fin
   pacwise     = false;                    // initialise a drawing direction
@@ -24,7 +30,7 @@ function initializeLibrary(){
   invincible  = false;                    // invincibility granted on PowerDots
   ghost1alive = true;                     // can be killed by Pac when Pac is invinc
   ghost2alive = true;                     // can be killed by Pac when Pac is invinc
-  console.log("and this is from the initializeLibrary");
+  ghost3alive = true;                     // can be killed by Pac when Pac is invinc
 }
 
 function clear(){
@@ -152,6 +158,16 @@ function drawGhost(){
     enemy2.src = "Ghost_eyes.png";
   }
   ctx.drawImage(enemy2,xg2-12,yg2-12,24,24);
+   // draw the third ghost it is a different colour when alive
+    var enemy3 = new Image();
+    if (invincible && ghost3alive){
+      enemy3.src = "Ghost_5.png";
+    }else if (ghost3alive){
+      enemy3.src = "Ghost_3.png";
+    }else{
+      enemy3.src = "Ghost_eyes.png";
+    }
+    ctx.drawImage(enemy3,xg3-12,yg3-12,24,24);
 }
 
 function drawGate(){
@@ -212,7 +228,27 @@ function moveGhostRand(){
     dirg2 = directions[Math.floor(Math.random() * directions.length)];
     //console.log("canmove is false changing direction to", dirg1);
   }
-
+  // Repeat for ghost 3
+  if (dirg3 === "left" && canMove(dirg3,xg3,yg3)) {
+      xg3 = xg3 - incrementg;
+    //console.log("true - ghost moving left");
+  }
+  else if (dirg3 === "right" && canMove(dirg3,xg3,yg3)) { 
+      xg3 = xg3 + incrementg;
+    //console.log("true - ghost moving right");
+  }
+  else if (dirg3 === "up" && canMove(dirg3,xg3,yg3)) {
+    yg3 = yg3 - incrementg;
+    //console.log("true - ghost moving up");
+  }
+  else if (dirg3 === "down" && canMove(dirg3,xg3,yg3)) {
+    yg3 = yg3 + incrementg;
+    //console.log("true - ghost moving down");
+  }
+  else {
+    dirg3 = directions[Math.floor(Math.random() * directions.length)];
+    //console.log("canmove is false changing direction to", dirg1);
+  }
 }
 
 function canMove(directionF,xx,yy){
@@ -298,6 +334,7 @@ function canMove(directionF,xx,yy){
     drawDeath();
   };
 }
+  // check the same for ghost 2
   if ( Math.abs(x-xg2)<2*radiusPacman && Math.abs(y-yg2)<2*radiusPacman  )  {
    if(invincible){
     ghost2alive = false
@@ -306,6 +343,16 @@ function canMove(directionF,xx,yy){
     drawDeath();
   };
 }
+  // check the same for ghost 2
+  if ( Math.abs(x-xg3)<2*radiusPacman && Math.abs(y-yg3)<2*radiusPacman  )  {
+   if(invincible){
+    ghost3alive = false
+  }else{
+    lives = lives -1 ;       // reduce the lives if pacman is not invincible
+    drawDeath();
+  };
+}
+
 }
 
 function drawDeath(){
