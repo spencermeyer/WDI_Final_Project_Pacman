@@ -17,7 +17,7 @@ function initializeLibrary(){
   score       = 0;                        // cumulative score
   lives       = 3;                        // number of lives left initilise
   invincible  = false;                    // invincibility granted on PowerDots
-  ghost1live  = true;
+  ghost1alive = true;
   console.log("and this is from the initializeLibrary");
 }
 
@@ -128,10 +128,12 @@ function drawPowerDots(){
 }
 function drawGhost(){
   var enemy = new Image();
-  if (invincible){
+  if (invincible && ghost1alive){
     enemy.src = "Ghost_5.png";
-  }else{
+  }else if (ghost1alive){
     enemy.src = "Ghost_1.png";
+  }else{
+    enemy.src = "Ghost_eyes.png";
   }
   ctx.drawImage(enemy,xg1,yg1,23,23);
 }
@@ -163,11 +165,11 @@ function moveGhostRand(){
     //console.log("moving right");
   }
   if (dirg1 === "up" && canMove(dirg1,xg1,yg1)) {
-    yg1 = yg1 + incrementg;
+    yg1 = yg1 - incrementg;
     //console.log('moving up');
   }
   if (dirg1 === "down" && canMove(dirg1,xg1,yg1)) {
-    yg1 = yg1 - incrementg;
+    yg1 = yg1 + incrementg;
     //console.log("moving down");
   }
   else {
@@ -239,23 +241,27 @@ function canMove(direction,xx,yy){
       score = score + 10;     // update the score that is then written to screen
     }
   }
+  //  This function takes away powerdots if they are eaten and confers
+  //  invincibility to pacman.
     for (i=0; i<pacPowerDots.length; i+=1){ 
       if ((x-radiusPacman) < pacPowerDots[i][0] && (x+radiusPacman) > pacPowerDots[i][0] && (y-radiusPacman)<pacPowerDots[i][1] && (y+radiusPacman)>pacPowerDots[i][1]){
       pacPowerDots.splice(i,1);    // take away the pac dot if it is eaten
-      score = score + 100;     // update the score that is then written to screen
-      invincible = true;
+      score = score + 100;         // update the score that is then written to screen
+      invincible = true;           // make pacman invincible
       // ADD INVICIBLE CODE
-    }
+      }
   }
-
-
   // and now to test if there is a collision between the pacman and a ghost
   // and loose a life if this happens.
   if ( Math.abs(x-xg1)<2*radiusPacman && Math.abs(y-yg1)<2*radiusPacman  )  {
-   lives = lives -1 ;    // reduce the lives by one
-   if(invincible){ghost1live = false};
-  
-   //NEED TO PUT A DELAY ACTION IN HERE....
+   if(invincible){
+    ghost1alive = false
+  }else{
+    lives = lives -1 ;       // reduce the lives if pacman is not invincible
+    drawDeath();
+  };
+
+   //NEED TO PUT A DELAY ACTION IN HERE TO HOLD THE DRAWDEATH MESSAGE....
 
  }
 }
