@@ -8,7 +8,7 @@ function initializeLibrary(){
   y           = 200;
   dirg1       = "down";                   // initialise direction ghost
   incrementg  = 1;                        // ghost 1 movement distance
-  xg1         = 270;                      // starting position ghost 1
+  xg1         = 20;                      // starting position ghost 1  270
   yg1         = 290;                      // starting position ghost 1
   dirg1       = "right";                  // initialize a ghost direction
   ang1        = Math.PI * 0.25;           // initialize a drawing angle st
@@ -147,7 +147,6 @@ function drawGate(){
   if(score<100){
     ctx.stroke();
     ctx.closePath;
-    console.log("linewidth", ctx.lineWidth);
   }
 }
 
@@ -156,34 +155,36 @@ function moveGhostRand(){
   // a wall then changes to a random direction then repeats.
   var directions = ['up', 'down', 'right', 'left'];  
   
+  //if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
   if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
     xg1 = xg1 - incrementg;
-    //console.log("moving left");
+    console.log("ghost moving left");
   }
-  if (dirg1 === "right" && canMove(dirg1,xg1,yg1)) {
+  //if (dirg1 === "right" && canMove(dirg1,xg1,yg1)) {
+   if (dirg1 === "right" && canMove(dirg1,xg1,yg1)) { 
     xg1 = xg1 + incrementg;
-    //console.log("moving right");
+    console.log("ghost moving right");
   }
   if (dirg1 === "up" && canMove(dirg1,xg1,yg1)) {
     yg1 = yg1 - incrementg;
-    //console.log('moving up');
+    console.log("ghsot moving up");
   }
   if (dirg1 === "down" && canMove(dirg1,xg1,yg1)) {
     yg1 = yg1 + incrementg;
-    //console.log("moving down");
+    console.log("ghsot moving down");
   }
   else {
     dirg1 = directions[Math.floor(Math.random() * directions.length)];
-    //console.log("canmove is false changing direction to", dirg1);
+    console.log("canmove is false changing direction to", dirg1);
   }
 }
 
-function canMove(direction,xx,yy){
+function canMove(directionF,xx,yy){
     // This function scans ahead of the movement direction and sees if there
     // is one pixel of blue and if so stops movement in that direction.
     // This is used by the pacman and by the ghosts.
     // First set up the directions and locations of the scan box.   
-    switch(direction){
+    switch(directionF){
       case("left"):
       var width     = 6;
       var height    = radiusPacman*2;
@@ -195,7 +196,7 @@ function canMove(direction,xx,yy){
       var height    = radiusPacman*2;
       var topLeftX  = xx+(radiusPacman);
       var topLeftY  = yy-(radiusPacman);
-      //console.log("xx=",xx,"top left xx = ", topLeftX, direction);
+      console.log("In canMove, xg1=",xg1,"xx=",xx,"yg1=",yg1,"yy=",yy);
       break;
       case("up"):
       var width     = radiusPacman*2;
