@@ -1,7 +1,3 @@
-var increment = 5;
-var score = 0;
-direction = "right";
-
 document.addEventListener('DOMContentLoaded', function () {
   console.log ("start of Javascript doc loaded");
   

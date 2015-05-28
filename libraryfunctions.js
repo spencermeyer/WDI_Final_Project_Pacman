@@ -6,9 +6,11 @@ function initializeLibrary(){
   r           = 50;
   x           = 200;
   y           = 200;
-  dirg1       = "down";                   // initialise direction ghost
-  incrementg  = 1;                        // ghost 1 movement distance
-  xg1         = 20;                      // starting position ghost 1  270
+  increment = 5;
+  score = 0;
+  direction = "right";
+  incrementg  = 4;                        // ghost 1 movement distance
+  xg1         = 270;                      // starting position ghost 1  270
   yg1         = 290;                      // starting position ghost 1
   dirg1       = "right";                  // initialize a ghost direction
   ang1        = Math.PI * 0.25;           // initialize a drawing angle st
@@ -17,7 +19,7 @@ function initializeLibrary(){
   score       = 0;                        // cumulative score
   lives       = 3;                        // number of lives left initilise
   invincible  = false;                    // invincibility granted on PowerDots
-  ghost1alive = true;
+  ghost1alive = true;                     // can be killed by Pac when Pac is invinc
   console.log("and this is from the initializeLibrary");
 }
 
@@ -158,20 +160,20 @@ function moveGhostRand(){
   //if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
   if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
     xg1 = xg1 - incrementg;
-    console.log("ghost moving left");
+    console.log("true - ghost moving left");
   }
   //if (dirg1 === "right" && canMove(dirg1,xg1,yg1)) {
-   if (dirg1 === "right" && canMove(dirg1,xg1,yg1)) { 
+  else if (dirg1 === "right" && canMove(dirg1,xg1,yg1)) { 
     xg1 = xg1 + incrementg;
-    console.log("ghost moving right");
+    console.log("true - ghost moving right");
   }
-  if (dirg1 === "up" && canMove(dirg1,xg1,yg1)) {
+  else if (dirg1 === "up" && canMove(dirg1,xg1,yg1)) {
     yg1 = yg1 - incrementg;
-    console.log("ghsot moving up");
+    console.log("true - ghost moving up");
   }
-  if (dirg1 === "down" && canMove(dirg1,xg1,yg1)) {
+  else if (dirg1 === "down" && canMove(dirg1,xg1,yg1)) {
     yg1 = yg1 + incrementg;
-    console.log("ghsot moving down");
+    console.log("true - ghost moving down");
   }
   else {
     dirg1 = directions[Math.floor(Math.random() * directions.length)];
@@ -180,6 +182,7 @@ function moveGhostRand(){
 }
 
 function canMove(directionF,xx,yy){
+    //console.log(directionF,xx,yy)
     // This function scans ahead of the movement direction and sees if there
     // is one pixel of blue and if so stops movement in that direction.
     // This is used by the pacman and by the ghosts.
@@ -196,7 +199,7 @@ function canMove(directionF,xx,yy){
       var height    = radiusPacman*2;
       var topLeftX  = xx+(radiusPacman);
       var topLeftY  = yy-(radiusPacman);
-      console.log("In canMove, xg1=",xg1,"xx=",xx,"yg1=",yg1,"yy=",yy);
+      // console.log("In canMove, xg1=",xg1,"xx=",xx,"yg1=",yg1,"yy=",yy);
       break;
       case("up"):
       var width     = radiusPacman*2;
@@ -276,11 +279,9 @@ function drawDeath(){
   y = 200;              // not continuously loose life in same position
 }
 
-
 function drawScore(){
   ctx.lineWidth = 1;
   ctx.font="30px ARCADE";
   ctx.strokeStyle = 'white';
   ctx.strokeText("Score: "+score,10,40);
 }
-
