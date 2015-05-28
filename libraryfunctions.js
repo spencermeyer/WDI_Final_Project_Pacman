@@ -137,7 +137,7 @@ function drawGhost(){
   }else{
     enemy.src = "Ghost_eyes.png";
   }
-  ctx.drawImage(enemy,xg1,yg1,23,23);
+  ctx.drawImage(enemy,xg1-12,yg1-12,24,24);
 }
 
 function drawGate(){
