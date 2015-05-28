@@ -1,21 +1,23 @@
 function initializeLibrary(){
-  canvas  = document.getElementById("canvas");
-  ctx     = canvas.getContext("2d");
-  WIDTH   = canvas.width;
-  HEIGHT  = canvas.height;  
-  r       = 50;
-  x       = 200;
-  y       = 200;
-  dirg1   = "down";                       // initialise direction ghost
+  canvas      = document.getElementById("canvas");
+  ctx         = canvas.getContext("2d");
+  WIDTH       = canvas.width;
+  HEIGHT      = canvas.height;  
+  r           = 50;
+  x           = 200;
+  y           = 200;
+  dirg1       = "down";                   // initialise direction ghost
   incrementg  = 1;                        // ghost 1 movement distance
-  xg1     = 270;                          // starting position ghost 1
-  yg1     = 290;                          // starting position ghost 1
-  dirg1   = "right";                      // initialize a ghost direction
-  ang1    = Math.PI * 0.25;               // initialize a drawing angle st
-  ang2    = Math.PI * 1.75;               // initialize a drawing angle fin
-  pacwise = false;                        // initialise a drawing direction
-  score   = 0;                            // cumulative score
-  lives = 3;                              // number of lives left initilise
+  xg1         = 270;                      // starting position ghost 1
+  yg1         = 290;                      // starting position ghost 1
+  dirg1       = "right";                  // initialize a ghost direction
+  ang1        = Math.PI * 0.25;           // initialize a drawing angle st
+  ang2        = Math.PI * 1.75;           // initialize a drawing angle fin
+  pacwise     = false;                    // initialise a drawing direction
+  score       = 0;                        // cumulative score
+  lives       = 3;                        // number of lives left initilise
+  invincible  = false;                    // invincibility granted on PowerDots
+  ghost1live  = true;
   console.log("and this is from the initializeLibrary");
 }
 
@@ -126,7 +128,11 @@ function drawPowerDots(){
 }
 function drawGhost(){
   var enemy = new Image();
-  enemy.src = "Ghost_1.png";
+  if (invincible){
+    enemy.src = "Ghost_5.png";
+  }else{
+    enemy.src = "Ghost_1.png";
+  }
   ctx.drawImage(enemy,xg1,yg1,23,23);
 }
 
@@ -233,13 +239,27 @@ function canMove(direction,xx,yy){
       score = score + 10;     // update the score that is then written to screen
     }
   }
+    for (i=0; i<pacPowerDots.length; i+=1){ 
+      if ((x-radiusPacman) < pacPowerDots[i][0] && (x+radiusPacman) > pacPowerDots[i][0] && (y-radiusPacman)<pacPowerDots[i][1] && (y+radiusPacman)>pacPowerDots[i][1]){
+      pacPowerDots.splice(i,1);    // take away the pac dot if it is eaten
+      score = score + 100;     // update the score that is then written to screen
+      invincible = true;
+      // ADD INVICIBLE CODE
+    }
+  }
+
+
   // and now to test if there is a collision between the pacman and a ghost
   // and loose a life if this happens.
   if ( Math.abs(x-xg1)<2*radiusPacman && Math.abs(y-yg1)<2*radiusPacman  )  {
    lives = lives -1 ;    // reduce the lives by one
-   drawDeath();
+   if(invincible){ghost1live = false};
+  
+   //NEED TO PUT A DELAY ACTION IN HERE....
+
  }
 }
+
 function drawDeath(){
   ctx.lineWidth = 1;
   ctx.font="50px ARCADE";
