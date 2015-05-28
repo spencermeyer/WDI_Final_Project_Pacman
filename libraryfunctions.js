@@ -14,7 +14,8 @@ function initializeLibrary(){
   yg1         = 290;                      // starting position ghost 1
   xg2         = 280;                      // starting position ghost 2
   yg2         = 290;                      // starting position ghost 2
-  dirg1       = "right";                  // initialize a ghost direction
+  dirg1       = "right";                  // initialize ghost 1 direction
+  dirg2       = "up";                     // initialize ghost 2 direction
   ang1        = Math.PI * 0.25;           // initialize a drawing angle st
   ang2        = Math.PI * 1.75;           // initialize a drawing angle fin
   pacwise     = false;                    // initialise a drawing direction
@@ -170,13 +171,11 @@ function moveGhostRand(){
   // a wall then changes to a random direction then repeats.
   var directions = ['up', 'down', 'right', 'left'];  
   
-  //if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
-    if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
+  if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
       xg1 = xg1 - incrementg;
     //console.log("true - ghost moving left");
   }
-  //if (dirg1 === "right" && canMove(dirg1,xg1,yg1)) {
-    else if (dirg1 === "right" && canMove(dirg1,xg1,yg1)) { 
+  else if (dirg1 === "right" && canMove(dirg1,xg1,yg1)) { 
       xg1 = xg1 + incrementg;
     //console.log("true - ghost moving right");
   }
@@ -192,6 +191,28 @@ function moveGhostRand(){
     dirg1 = directions[Math.floor(Math.random() * directions.length)];
     //console.log("canmove is false changing direction to", dirg1);
   }
+  // Repeat for ghost 2
+  if (dirg2 === "left" && canMove(dirg2,xg2,yg2)) {
+      xg2 = xg2 - incrementg;
+    //console.log("true - ghost moving left");
+  }
+  else if (dirg2 === "right" && canMove(dirg2,xg2,yg2)) { 
+      xg2 = xg2 + incrementg;
+    //console.log("true - ghost moving right");
+  }
+  else if (dirg2 === "up" && canMove(dirg2,xg2,yg2)) {
+    yg2 = yg2 - incrementg;
+    //console.log("true - ghost moving up");
+  }
+  else if (dirg2 === "down" && canMove(dirg2,xg2,yg2)) {
+    yg2 = yg2 + incrementg;
+    //console.log("true - ghost moving down");
+  }
+  else {
+    dirg2 = directions[Math.floor(Math.random() * directions.length)];
+    //console.log("canmove is false changing direction to", dirg1);
+  }
+
 }
 
 function canMove(directionF,xx,yy){
@@ -212,7 +233,6 @@ function canMove(directionF,xx,yy){
       var height    = radiusPacman*2;
       var topLeftX  = xx+(radiusPacman);
       var topLeftY  = yy-(radiusPacman);
-      // console.log("In canMove, xg1=",xg1,"xx=",xx,"yg1=",yg1,"yy=",yy);
       break;
       case("up"):
       var width     = radiusPacman*2;
@@ -286,8 +306,6 @@ function canMove(directionF,xx,yy){
     drawDeath();
   };
 }
-
-
 }
 
 function drawDeath(){
