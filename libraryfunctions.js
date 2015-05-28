@@ -12,6 +12,8 @@ function initializeLibrary(){
   incrementg  = 4;                        // ghost 1 movement distance
   xg1         = 270;                      // starting position ghost 1  270
   yg1         = 290;                      // starting position ghost 1
+  xg2         = 280;                      // starting position ghost 2
+  yg2         = 290;                      // starting position ghost 2
   dirg1       = "right";                  // initialize a ghost direction
   ang1        = Math.PI * 0.25;           // initialize a drawing angle st
   ang2        = Math.PI * 1.75;           // initialize a drawing angle fin
@@ -20,6 +22,7 @@ function initializeLibrary(){
   lives       = 3;                        // number of lives left initilise
   invincible  = false;                    // invincibility granted on PowerDots
   ghost1alive = true;                     // can be killed by Pac when Pac is invinc
+  ghost2alive = true;                     // can be killed by Pac when Pac is invinc
   console.log("and this is from the initializeLibrary");
 }
 
@@ -129,15 +132,25 @@ function drawPowerDots(){
   }
 }
 function drawGhost(){
-  var enemy = new Image();
+  var enemy1 = new Image();
   if (invincible && ghost1alive){
-    enemy.src = "Ghost_5.png";
+    enemy1.src = "Ghost_5.png";
   }else if (ghost1alive){
-    enemy.src = "Ghost_1.png";
+    enemy1.src = "Ghost_1.png";
   }else{
-    enemy.src = "Ghost_eyes.png";
+    enemy1.src = "Ghost_eyes.png";
   }
-  ctx.drawImage(enemy,xg1-12,yg1-12,24,24);
+  ctx.drawImage(enemy1,xg1-12,yg1-12,24,24);
+  // draw the second ghost it is a different colour when alive
+  var enemy2 = new Image();
+  if (invincible && ghost2alive){
+    enemy2.src = "Ghost_5.png";
+  }else if (ghost2alive){
+    enemy2.src = "Ghost_2.png";
+  }else{
+    enemy2.src = "Ghost_eyes.png";
+  }
+  ctx.drawImage(enemy2,xg2-12,yg2-12,24,24);
 }
 
 function drawGate(){
@@ -158,26 +171,26 @@ function moveGhostRand(){
   var directions = ['up', 'down', 'right', 'left'];  
   
   //if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
-  if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
-    xg1 = xg1 - incrementg;
-    console.log("true - ghost moving left");
+    if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
+      xg1 = xg1 - incrementg;
+    //console.log("true - ghost moving left");
   }
   //if (dirg1 === "right" && canMove(dirg1,xg1,yg1)) {
-  else if (dirg1 === "right" && canMove(dirg1,xg1,yg1)) { 
-    xg1 = xg1 + incrementg;
-    console.log("true - ghost moving right");
+    else if (dirg1 === "right" && canMove(dirg1,xg1,yg1)) { 
+      xg1 = xg1 + incrementg;
+    //console.log("true - ghost moving right");
   }
   else if (dirg1 === "up" && canMove(dirg1,xg1,yg1)) {
     yg1 = yg1 - incrementg;
-    console.log("true - ghost moving up");
+    //console.log("true - ghost moving up");
   }
   else if (dirg1 === "down" && canMove(dirg1,xg1,yg1)) {
     yg1 = yg1 + incrementg;
-    console.log("true - ghost moving down");
+    //console.log("true - ghost moving down");
   }
   else {
     dirg1 = directions[Math.floor(Math.random() * directions.length)];
-    console.log("canmove is false changing direction to", dirg1);
+    //console.log("canmove is false changing direction to", dirg1);
   }
 }
 
@@ -247,13 +260,13 @@ function canMove(directionF,xx,yy){
   }
   //  This function takes away powerdots if they are eaten and confers
   //  invincibility to pacman.
-    for (i=0; i<pacPowerDots.length; i+=1){ 
-      if ((x-radiusPacman) < pacPowerDots[i][0] && (x+radiusPacman) > pacPowerDots[i][0] && (y-radiusPacman)<pacPowerDots[i][1] && (y+radiusPacman)>pacPowerDots[i][1]){
+  for (i=0; i<pacPowerDots.length; i+=1){ 
+    if ((x-radiusPacman) < pacPowerDots[i][0] && (x+radiusPacman) > pacPowerDots[i][0] && (y-radiusPacman)<pacPowerDots[i][1] && (y+radiusPacman)>pacPowerDots[i][1]){
       pacPowerDots.splice(i,1);    // take away the pac dot if it is eaten
       score = score + 100;         // update the score that is then written to screen
       invincible = true;           // make pacman invincible
       // ADD INVICIBLE CODE
-      }
+    }
   }
   // and now to test if there is a collision between the pacman and a ghost
   // and loose a life if this happens.
@@ -264,10 +277,17 @@ function canMove(directionF,xx,yy){
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
     drawDeath();
   };
+}
+  if ( Math.abs(x-xg2)<2*radiusPacman && Math.abs(y-yg2)<2*radiusPacman  )  {
+   if(invincible){
+    ghost2alive = false
+  }else{
+    lives = lives -1 ;       // reduce the lives if pacman is not invincible
+    drawDeath();
+  };
+}
 
-   //NEED TO PUT A DELAY ACTION IN HERE TO HOLD THE DRAWDEATH MESSAGE....
 
- }
 }
 
 function drawDeath(){
