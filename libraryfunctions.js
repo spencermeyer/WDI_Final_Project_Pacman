@@ -173,7 +173,7 @@ function drawGhost(){
      var enemy4 = new Image();
      if (invincible && ghost4alive){
        enemy4.src = "Ghost_5.png";
-     }else if (ghost3alive){
+     }else if (ghost4alive){
        enemy4.src = "Ghost_4.png";
      }else{
        enemy4.src = "Ghost_eyes.png";
@@ -198,6 +198,14 @@ function moveGhostRand(){
   // a wall then changes to a random direction then repeats.
   var directions = ['up', 'down', 'right', 'left'];  
   
+  //  here set the hunter function for ghost 1
+  //  Basis is of following the x y coordinates of pac with probability
+  p1=Math.random();
+  if (x<xg1 && p1>0.25){dirg1 = "left"};
+  if (y<yg1 && p1>0.25){dirg1 = "up"};
+  if (x>xg1 && p1>0.25){dirg1 = "right"};
+  if (y>yg1 && p1>0.25){dirg1 = "down"};
+
   if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
       xg1 = xg1 - incrementg;
     //console.log("true - ghost moving left");
