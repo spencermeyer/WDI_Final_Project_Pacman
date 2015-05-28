@@ -10,6 +10,7 @@ function myTimer() {
     pacman();               //  This draws the pacman in the current position 
     movePacMan();           //  Moves PacMan on automatically 
     drawDots();             //  This draws the pacdots from the array
+    drawPowerDots();        //  This draws the four power dots
     drawGhost();            //  This draws the ghost in the current positon
     drawGate();             //  This draws the gate across the centre housing
     moveGhostRand();        //  Sets random direction for ghost

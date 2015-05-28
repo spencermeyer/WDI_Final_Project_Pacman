@@ -87,10 +87,12 @@ function movePacMan(){
   switch(direction){
     case("left"):
     if (canMove(direction,x,y)) {x = x - increment};
+    if (x<0) {x=560};
     collision();
     break;
     case("right"):
     if (canMove(direction,x,y)){x=x+increment};
+    if (x>560){x=0};
     collision();
     break;
     case("up"):
@@ -108,6 +110,15 @@ function drawDots(){
     // console.log("example pacdot", pacDots[i][0], pacDots[i][1]);
     ctx.beginPath();
     ctx.arc(pacDots[i][0],pacDots[i][1],2,0,Math.PI*2);
+    ctx.fillStyle="yellow";
+    ctx.fill();
+    ctx.closePath;
+  }
+}
+function drawPowerDots(){
+  for (i=0; i<pacPowerDots.length; i++){
+    ctx.beginPath();
+    ctx.arc(pacPowerDots[i][0],pacPowerDots[i][1],5,0,Math.PI*2);
     ctx.fillStyle="yellow";
     ctx.fill();
     ctx.closePath;
@@ -182,7 +193,7 @@ function canMove(direction,xx,yy){
       var width     = radiusPacman*2;
       var height    = 6;
       var topLeftX  = xx-(radiusPacman);
-      var topLeftY  = yy-(radiusPacman+width);
+      var topLeftY  = yy-(radiusPacman+height);
       break;
       case("down"):
       var width     = radiusPacman*2;
@@ -226,9 +237,7 @@ function canMove(direction,xx,yy){
   // and loose a life if this happens.
   if ( Math.abs(x-xg1)<2*radiusPacman && Math.abs(y-yg1)<2*radiusPacman  )  {
    lives = lives -1 ;    // reduce the lives by one
-   setTimeout(function(){
-          drawDeath(); //  NEEDS SOME WORK.....
-        }, 2000);
+   drawDeath();
  }
 }
 function drawDeath(){
