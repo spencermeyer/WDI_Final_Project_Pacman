@@ -7,6 +7,10 @@ This is work in progress that is due to be presented on Friday 5th June at Gener
 
 Features:
 
+*Uses Javascript's canvas to paint the pacman, the ghosts, the score, the pacdots, the powerdots,and the number of lives left.  It refreshes every 25 milliseconds.
+
+
+
 *Uses forward looking into the pixels in front of an object (either the pacman or the ghosts) to see if there are any blue pixels (i.e. a wall) and prevent movement forward if this is the case.  The advantage of this technique is that new background images could be quickly added and used.
 
 *Uses collision handlers to determine if a pacman has collided with either a pacdot, a powerdot or a ghost and takes the appropriate action.

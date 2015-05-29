@@ -5,13 +5,13 @@ function initializeLibrary(){
   HEIGHT      = canvas.height;  
   r           = 50;                       // 
   x           = 200;                      // pacman x position
-  y           = 200;                      // pacman y position
+  y           = 405;                      // pacman y position
   increment   = 5;                        // how many pixels pacman advances
   incrementg  = 4;                        // ghost 1 movement distance
   score       = 0;                        // keep track of the score to display
   direction   = "right";                  // initialise a direction for pacman
   xg1         = 270;                      // starting position ghost 1
-  yg1         = 290;                      // starting position ghost 1
+  yg1         = 255;                      // starting position ghost 1
   xg2         = 280;                      // starting position ghost 2
   yg2         = 290;                      // starting position ghost 2
   xg3         = 265;                      // starting position ghost 3
@@ -38,6 +38,7 @@ function initializeLibrary(){
 function clear(){
   ctx.clearRect(0, 0, WIDTH, HEIGHT);
 }
+
 function drawLives(){
 // This function draws one, two, or three right facing pacs at the 
 // bottom of the screen depending upon the number of lives left.
@@ -72,6 +73,7 @@ if(lives>2){
   ctx.closePath;
 }
 }
+
 function drawBackGroundImage(){
   // This puts the background image onto the canvas.
   // Important: do not change the dimensions.
@@ -79,6 +81,7 @@ function drawBackGroundImage(){
   MazeBackground.src = "Pac_man_background_image_clean.png";
   ctx.drawImage(MazeBackground,0,0,560,620);
 }
+
 function drawRects(){
   for (i=0; i<pacRects.length; i++){
     ctx.strokeStyle = '#00008F';
@@ -87,6 +90,7 @@ function drawRects(){
     ctx.closePath;
   }
 }
+
 function pacman(){
   radiusPacman = 13;
   var colorPacman  = "yellow";
@@ -99,6 +103,7 @@ function pacman(){
   ctx.closePath;
   // console.log(x,y);
 }
+
 function movePacMan(){
   switch(direction){
     case("left"):
@@ -121,6 +126,7 @@ function movePacMan(){
     break;
   }
 }
+
 function drawDots(){
   for (i=0; i<pacDots.length; i++){
     // console.log("example pacdot", pacDots[i][0], pacDots[i][1]);
@@ -131,6 +137,7 @@ function drawDots(){
     ctx.closePath;
   }
 }
+
 function drawPowerDots(){
   for (i=0; i<pacPowerDots.length; i++){
     ctx.beginPath();
@@ -140,6 +147,7 @@ function drawPowerDots(){
     ctx.closePath;
   }
 }
+
 function drawGhost(){
   // draw the first ghost, make it blue when pac is invincible and 
   // make it into eyes when eaten.
@@ -357,6 +365,7 @@ function canMove(directionF,xx,yy){
       if ((x-radiusPacman) < pacDots[i][0] && (x+radiusPacman) > pacDots[i][0] && (y-radiusPacman)<pacDots[i][1] && (y+radiusPacman)>pacDots[i][1]){
       pacDots.splice(i,1);    // take away the pac dot if it is eaten
       score = score + 10;     // update the score that is then written to screen
+      chompSound();
     }
   }
   //  This function takes away powerdots if they are eaten and confers
@@ -364,7 +373,7 @@ function canMove(directionF,xx,yy){
   for (i=0; i<pacPowerDots.length; i+=1){ 
     if ((x-radiusPacman) < pacPowerDots[i][0] && (x+radiusPacman) > pacPowerDots[i][0] && (y-radiusPacman)<pacPowerDots[i][1] && (y+radiusPacman)>pacPowerDots[i][1]){
       pacPowerDots.splice(i,1);    // take away the pac dot if it is eaten
-      score = score + 100;         // update the score that is then written to screen
+      score = score + 50;         // update the score that is then written to screen
       invincible = true;           // make pacman invincible
       // set a timer to time out and remove invincibility 
       var myVar2=setInterval(function () {clearInvincibility()}, 5000);
@@ -375,7 +384,8 @@ function canMove(directionF,xx,yy){
   // and loose a life if this happens.
   if ( Math.abs(x-xg1)<2*radiusPacman && Math.abs(y-yg1)<2*radiusPacman  )  {
    if(invincible){
-    ghost1alive = false
+    ghost1alive = false;
+    score = score + 200;
   }else{
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
     dead = true;             // sets value so that banner knows to display
@@ -385,7 +395,8 @@ function canMove(directionF,xx,yy){
   // check the same for ghost 2
   if ( Math.abs(x-xg2)<2*radiusPacman && Math.abs(y-yg2)<2*radiusPacman  )  {
    if(invincible){
-    ghost2alive = false
+    ghost2alive = false;
+    score = score + 200;
   }else{
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
     dead = true;
@@ -395,7 +406,8 @@ function canMove(directionF,xx,yy){
   // check the same for ghost 3
   if ( Math.abs(x-xg3)<2*radiusPacman && Math.abs(y-yg3)<2*radiusPacman  )  {
    if(invincible){
-    ghost3alive = false
+    ghost3alive = false;
+    score = score + 200;
   }else{
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
     dead = true;
@@ -405,7 +417,8 @@ function canMove(directionF,xx,yy){
   // check the same for ghost 4
   if ( Math.abs(x-xg4)<2*radiusPacman && Math.abs(y-yg4)<2*radiusPacman  )  {
    if(invincible){
-    ghost4alive = false
+    ghost4alive = false;
+    score = score + 200;
   }else{
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
     dead = true;
@@ -450,3 +463,10 @@ function drawScore(){
   ctx.strokeStyle = 'white';
   ctx.strokeText("Score: "+score,10,40);
 }
+
+function chompSound(){
+  var eat = new Audio('pacman_chomp_2.wav');
+  console.log("trying to play sound chomp")
+  eat.play();
+}
+
