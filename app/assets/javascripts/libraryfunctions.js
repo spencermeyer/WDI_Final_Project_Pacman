@@ -81,7 +81,7 @@ function drawBackGroundImage(){
   MazeBackground.src = "Pac_man_background_image_clean.png";
   ctx.drawImage(MazeBackground,0,0,560,620);
 }
-
+//     *****  REDUNDANT CODE ???? ???  *****
 function drawRects(){
   for (i=0; i<pacRects.length; i++){
     ctx.strokeStyle = '#00008F';
@@ -203,6 +203,9 @@ function drawGate(){
   if(score<100){
     ctx.stroke();
     ctx.closePath;
+  };
+  if(score>1000){
+    incrementg = 6;
   }
 }
 
