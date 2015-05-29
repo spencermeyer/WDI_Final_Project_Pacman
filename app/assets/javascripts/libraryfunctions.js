@@ -376,7 +376,7 @@ function canMove(directionF,xx,yy){
     ghost1alive = false
   }else{
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
-    dead = true;
+    dead = true;             // sets value so that banner knows to display
     deathMode();              // freezes play and displays message for 2 secs
   };
 }
@@ -387,7 +387,7 @@ function canMove(directionF,xx,yy){
   }else{
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
     dead = true;
-    drawDeath();
+    deathMode();
   };
 }
   // check the same for ghost 3
@@ -396,7 +396,8 @@ function canMove(directionF,xx,yy){
     ghost3alive = false
   }else{
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
-    drawDeath();
+    dead = true;
+    deathmode();
   };
 }
   // check the same for ghost 4
@@ -405,7 +406,8 @@ function canMove(directionF,xx,yy){
     ghost4alive = false
   }else{
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
-    drawDeath();
+    dead = true;
+    deathMode();
   };
 }
 }
