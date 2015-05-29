@@ -367,8 +367,14 @@ function canMove(directionF,xx,yy){
       score = score + 100;         // update the score that is then written to screen
       invincible = true;           // make pacman invincible
       // ADD INVICIBLE CODE
+      // 
+      // set a timer to time out and remove invincibility 
+      var myVar2=setInterval(function () {clearInvincibility()}, 5000);
+      //
+      //
     }
   }
+  
   // and now to test if there is a collision between the pacman and a ghost
   // and loose a life if this happens.
   if ( Math.abs(x-xg1)<2*radiusPacman && Math.abs(y-yg1)<2*radiusPacman  )  {
@@ -411,6 +417,11 @@ function canMove(directionF,xx,yy){
   };
 }
 }
+
+function clearInvincibility(){
+  invincible = false;
+}
+
 function deathMode(){
   console.log("deathmode entered")
   increment = 0;
