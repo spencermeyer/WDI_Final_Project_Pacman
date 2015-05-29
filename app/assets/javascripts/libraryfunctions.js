@@ -297,7 +297,7 @@ function moveGhostRand(){
 }
 
 function canMove(directionF,xx,yy){
-    //console.log(directionF,xx,yy)
+    // console.log(directionF,xx,yy)
     // This function scans ahead of the movement direction and sees if there
     // is one pixel of blue and if so stops movement in that direction.
     // This is used by the pacman and by the ghosts.
@@ -366,12 +366,8 @@ function canMove(directionF,xx,yy){
       pacPowerDots.splice(i,1);    // take away the pac dot if it is eaten
       score = score + 100;         // update the score that is then written to screen
       invincible = true;           // make pacman invincible
-      // ADD INVICIBLE CODE
-      // 
       // set a timer to time out and remove invincibility 
       var myVar2=setInterval(function () {clearInvincibility()}, 5000);
-      //
-      //
     }
   }
   
@@ -426,9 +422,10 @@ function deathMode(){
   console.log("deathmode entered")
   increment = 0;
   incrementg = 0;
-  var myVar=setTimeout(deathTimer, 3000);
+  if(lives<1){timertime=60000}else{timertime=3000};
+  var myVar=setTimeout(deathTimer, timertime);
   function deathTimer(){
-    console.log("deathtimer entered")
+    console.log("deathtimer entered");
     increment = 5;
     incrementg = 6;
     dead = false;
@@ -440,7 +437,8 @@ function drawDeath(){
     ctx.lineWidth = 1;
     ctx.font="50px ARCADE";
     ctx.strokeStyle = 'white';
-    ctx.strokeText("LOSE A LIFE !!!!!",150,350);
+    if(lives<1){messagetext="GAME OVER ! ! !"}else{messagetext="LOSE A LIFE ! ! !"}
+    ctx.strokeText(messagetext,150,350);
   x = 200;              // reset position back to starting so that pac does
   y = 200;              // not continuously lose life in same position
 }
