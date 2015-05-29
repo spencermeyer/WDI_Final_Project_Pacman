@@ -3,13 +3,13 @@ function initializeLibrary(){
   ctx         = canvas.getContext("2d");
   WIDTH       = canvas.width;
   HEIGHT      = canvas.height;  
-  r           = 50;
-  x           = 200;
-  y           = 200;
-  increment   = 5;
-  score       = 0;
-  direction   = "right";
+  r           = 50;                       // 
+  x           = 200;                      // pacman x position
+  y           = 200;                      // pacman y position
+  increment   = 5;                        // how many pixels pacman advances
   incrementg  = 4;                        // ghost 1 movement distance
+  score       = 0;                        // keep track of the score to display
+  direction   = "right";                  // initialise a direction for pacman
   xg1         = 270;                      // starting position ghost 1
   yg1         = 290;                      // starting position ghost 1
   xg2         = 280;                      // starting position ghost 2
@@ -20,13 +20,14 @@ function initializeLibrary(){
   yg4         = 294;                      // starting position ghost 4
   dirg1       = "right";                  // initialize ghost 1 direction
   dirg2       = "up";                     // initialize ghost 2 direction
-  dirg3       = "left";                   // initialize ghost 2 direction
-  dirg4       = "down";                   // initialize ghost 2 direction
+  dirg3       = "left";                   // initialize ghost 3 direction
+  dirg4       = "down";                   // initialize ghost 4 direction
   ang1        = Math.PI * 0.25;           // initialize a drawing angle st
   ang2        = Math.PI * 1.75;           // initialize a drawing angle fin
   pacwise     = false;                    // initialise a drawing direction
   score       = 0;                        // cumulative score
   lives       = 3;                        // number of lives left initilise
+  dead        = false;                    // monitor status of pacman
   invincible  = false;                    // invincibility granted on PowerDots
   ghost1alive = true;                     // can be killed by Pac when Pac is invinc
   ghost2alive = true;                     // can be killed by Pac when Pac is invinc
@@ -140,6 +141,8 @@ function drawPowerDots(){
   }
 }
 function drawGhost(){
+  // draw the first ghost, make it blue when pac is invincible and 
+  // make it into eyes when eaten.
   var enemy1 = new Image();
   if (invincible && ghost1alive){
     enemy1.src = "Ghost_5.png";
@@ -149,6 +152,7 @@ function drawGhost(){
     enemy1.src = "Ghost_eyes.png";
   }
   ctx.drawImage(enemy1,xg1-12,yg1-12,24,24);
+  //
   // draw the second ghost it is a different colour when alive
   var enemy2 = new Image();
   if (invincible && ghost2alive){
@@ -159,26 +163,27 @@ function drawGhost(){
     enemy2.src = "Ghost_eyes.png";
   }
   ctx.drawImage(enemy2,xg2-12,yg2-12,24,24);
-   // draw the third ghost it is a different colour when alive
-    var enemy3 = new Image();
-    if (invincible && ghost3alive){
-      enemy3.src = "Ghost_5.png";
-    }else if (ghost3alive){
-      enemy3.src = "Ghost_3.png";
-    }else{
-      enemy3.src = "Ghost_eyes.png";
-    }
-    ctx.drawImage(enemy3,xg3-12,yg3-12,24,24);
-    // draw the fourth ghost it is a different colour when alive
-     var enemy4 = new Image();
-     if (invincible && ghost4alive){
-       enemy4.src = "Ghost_5.png";
-     }else if (ghost4alive){
-       enemy4.src = "Ghost_4.png";
-     }else{
-       enemy4.src = "Ghost_eyes.png";
-     }
-     ctx.drawImage(enemy4,xg4-12,yg4-12,24,24);
+  //
+  // draw the third ghost it is a different colour when alive
+  var enemy3 = new Image();
+  if (invincible && ghost3alive){
+   enemy3.src = "Ghost_5.png";
+ }else if (ghost3alive){
+   enemy3.src = "Ghost_3.png";
+ }else{
+   enemy3.src = "Ghost_eyes.png";
+ }
+ ctx.drawImage(enemy3,xg3-12,yg3-12,24,24);
+  // draw the fourth ghost it is a different colour when alive
+  var enemy4 = new Image();
+  if (invincible && ghost4alive){
+   enemy4.src = "Ghost_5.png";
+ }else if (ghost4alive){
+   enemy4.src = "Ghost_4.png";
+ }else{
+   enemy4.src = "Ghost_eyes.png";
+ }
+ ctx.drawImage(enemy4,xg4-12,yg4-12,24,24);
 }
 
 function drawGate(){
@@ -207,11 +212,11 @@ function moveGhostRand(){
   if (y>yg1 && p1>0.25){dirg1 = "down"};
 
   if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
-      xg1 = xg1 - incrementg;
+    xg1 = xg1 - incrementg;
     //console.log("true - ghost moving left");
   }
   else if (dirg1 === "right" && canMove(dirg1,xg1,yg1)) { 
-      xg1 = xg1 + incrementg;
+    xg1 = xg1 + incrementg;
     //console.log("true - ghost moving right");
   }
   else if (dirg1 === "up" && canMove(dirg1,xg1,yg1)) {
@@ -228,11 +233,11 @@ function moveGhostRand(){
   }
   // Repeat for ghost 2
   if (dirg2 === "left" && canMove(dirg2,xg2,yg2)) {
-      xg2 = xg2 - incrementg;
+    xg2 = xg2 - incrementg;
     //console.log("true - ghost moving left");
   }
   else if (dirg2 === "right" && canMove(dirg2,xg2,yg2)) { 
-      xg2 = xg2 + incrementg;
+    xg2 = xg2 + incrementg;
     //console.log("true - ghost moving right");
   }
   else if (dirg2 === "up" && canMove(dirg2,xg2,yg2)) {
@@ -249,11 +254,11 @@ function moveGhostRand(){
   }
   // Repeat for ghost 3
   if (dirg3 === "left" && canMove(dirg3,xg3,yg3)) {
-      xg3 = xg3 - incrementg;
+    xg3 = xg3 - incrementg;
     //console.log("true - ghost moving left");
   }
   else if (dirg3 === "right" && canMove(dirg3,xg3,yg3)) { 
-      xg3 = xg3 + incrementg;
+    xg3 = xg3 + incrementg;
     //console.log("true - ghost moving right");
   }
   else if (dirg3 === "up" && canMove(dirg3,xg3,yg3)) {
@@ -270,11 +275,11 @@ function moveGhostRand(){
   }
   // Repeat for ghost 4
   if (dirg4 === "left" && canMove(dirg4,xg4,yg4)) {
-      xg4 = xg4 - incrementg;
+    xg4 = xg4 - incrementg;
     //console.log("true - ghost moving left");
   }
   else if (dirg4 === "right" && canMove(dirg4,xg4,yg4)) { 
-      xg4 = xg4 + incrementg;
+    xg4 = xg4 + incrementg;
     //console.log("true - ghost moving right");
   }
   else if (dirg4 === "up" && canMove(dirg4,xg4,yg4)) {
@@ -371,7 +376,8 @@ function canMove(directionF,xx,yy){
     ghost1alive = false
   }else{
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
-    drawDeath();
+    dead = true;
+    deathMode();              // freezes play and displays message for 2 secs
   };
 }
   // check the same for ghost 2
@@ -380,6 +386,7 @@ function canMove(directionF,xx,yy){
     ghost2alive = false
   }else{
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
+    dead = true;
     drawDeath();
   };
 }
@@ -402,14 +409,28 @@ function canMove(directionF,xx,yy){
   };
 }
 }
+function deathMode(){
+  console.log("deathmode entered")
+  increment = 0;
+  incrementg = 0;
+  var myVar=setTimeout(deathTimer, 3000);
+  function deathTimer(){
+    console.log("deathtimer entered")
+    increment = 5;
+    incrementg = 6;
+    dead = false;
+  }
+}
 
 function drawDeath(){
-  ctx.lineWidth = 1;
-  ctx.font="50px ARCADE";
-  ctx.strokeStyle = 'white';
-  ctx.strokeText("LOOSE A LIFE !!!!!",150,350);
+  if(dead){
+    ctx.lineWidth = 1;
+    ctx.font="50px ARCADE";
+    ctx.strokeStyle = 'white';
+    ctx.strokeText("LOSE A LIFE !!!!!",150,350);
   x = 200;              // reset position back to starting so that pac does
-  y = 200;              // not continuously loose life in same position
+  y = 200;              // not continuously lose life in same position
+}
 }
 
 function drawScore(){
