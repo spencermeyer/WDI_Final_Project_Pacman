@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.onkeydown=function(){
     //console.log("a key pressed")
     var keyThatWasPressed= (String.fromCharCode(event.keyCode || event.charCode));
-    //console.log (keyThatWasPressed)
+    console.log ("keypressed =", keyThatWasPressed)
     switch(keyThatWasPressed){
       case("%"):
         //console.log("left was pressed");
@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
         ang2 = 1.25 *Math.PI;
         pacwise = true;
         direction = "left";
-        //console.log("left" + canMove(direction));
         break;
       case("'"):
         //console.log("right was pressed");
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
         ang2 = 1.75*Math.PI;
         pacwise = false;
         direction = "right";
-        //console.log("right" + canMove(direction));
         break;
       case("&"):
         //console.log("up was pressed");
@@ -28,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
         ang2 = 1.75*Math.PI;
         pacwise  = true;
         direction = "up";
-        //console.log("up" + canMove(direction));
         break;
       case("("):
         //console.log("down was pressed");
@@ -36,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
         ang2 = 2.25*Math.PI;
         pacwise = false;
         direction = "down";
-        //console.log("down"+canMove(direction));
         break;
       case(" "):
         //console.log("space was pressed");
