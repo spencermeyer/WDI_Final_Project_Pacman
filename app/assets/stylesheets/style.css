@@ -3,12 +3,16 @@ h1{
   font-size: 60px;
   color: green;
 }
-
 #canvas{
   background-color: grey;
   margin-left: auto;
   margin-right: auto;
 }
+#scores{
+  font-family: arcaderegular;
+
+}
+
 #positioner{
   position: absolute;
   left: 300px;
