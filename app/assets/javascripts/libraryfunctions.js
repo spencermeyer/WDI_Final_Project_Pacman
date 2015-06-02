@@ -78,9 +78,14 @@ function drawBackGroundImage(){
   // This puts the background image onto the canvas.
   // Important: do not change the dimensions.
   MazeBackground = new Image();
-  MazeBackground.src = "Assets/Pac_man_background_image_clean.png";
+  MazeBackground.src = "/assets/Pac_man_background_image_clean.png";
   ctx.drawImage(MazeBackground,0,0,560,620);
 }
+
+// MazeBackground.src = "../../assets/images/Pac_man_background_image_clean.png";
+//
+
+
 //     *****  REDUNDANT CODE ???? ???  *****
 function drawRects(){
   for (i=0; i<pacRects.length; i++){
@@ -153,43 +158,43 @@ function drawGhost(){
   // make it into eyes when eaten.
   var enemy1 = new Image();
   if (invincible && ghost1alive){
-    enemy1.src = "Ghost_5.png";
+    enemy1.src = "/assets/Ghost_5.png";
   }else if (ghost1alive){
-    enemy1.src = "Ghost_1.png";
+    enemy1.src = "/assets/Ghost_1.png";
   }else{
-    enemy1.src = "Ghost_eyes.png";
+    enemy1.src = "/assets/Ghost_eyes.png";
   }
   ctx.drawImage(enemy1,xg1-12,yg1-12,24,24);
   //
   // draw the second ghost it is a different colour when alive
   var enemy2 = new Image();
   if (invincible && ghost2alive){
-    enemy2.src = "Ghost_5.png";
+    enemy2.src = "/assets/Ghost_5.png";
   }else if (ghost2alive){
-    enemy2.src = "Ghost_2.png";
+    enemy2.src = "/assets/Ghost_2.png";
   }else{
-    enemy2.src = "Ghost_eyes.png";
+    enemy2.src = "/assets/Ghost_eyes.png";
   }
   ctx.drawImage(enemy2,xg2-12,yg2-12,24,24);
   //
   // draw the third ghost it is a different colour when alive
   var enemy3 = new Image();
   if (invincible && ghost3alive){
-   enemy3.src = "Ghost_5.png";
+   enemy3.src = "/assets/Ghost_5.png";
  }else if (ghost3alive){
-   enemy3.src = "Ghost_3.png";
+   enemy3.src = "/assets/Ghost_3.png";
  }else{
-   enemy3.src = "Ghost_eyes.png";
+   enemy3.src = "/assets/Ghost_eyes.png";
  }
  ctx.drawImage(enemy3,xg3-12,yg3-12,24,24);
   // draw the fourth ghost it is a different colour when alive
   var enemy4 = new Image();
   if (invincible && ghost4alive){
-   enemy4.src = "Ghost_5.png";
+   enemy4.src = "/assets/Ghost_5.png";
  }else if (ghost4alive){
-   enemy4.src = "Ghost_4.png";
+   enemy4.src = "/assets/Ghost_4.png";
  }else{
-   enemy4.src = "Ghost_eyes.png";
+   enemy4.src = "/assets/Ghost_eyes.png";
  }
  ctx.drawImage(enemy4,xg4-12,yg4-12,24,24);
 }
@@ -468,7 +473,7 @@ function drawScore(){
 }
 
 function chompSound(){
-  var eat = new Audio('pacman_chomp_2.wav');
+  var eat = new Audio('/assets/pacman_chomp_2.wav');
   console.log("trying to play sound chomp")
   eat.play();
 }

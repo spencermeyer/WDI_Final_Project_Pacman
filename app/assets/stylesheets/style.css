@@ -4,12 +4,12 @@
 
 @font-face {
   font-family: 'arcaderegular';
-  src: url('arcade-webfont.eot');
-  src: url('arcade-webfont.eot?#iefix') format('embedded-opentype'),
-       url('arcade-webfont.woff2') format('woff2'),
-       url('arcade-webfont.woff') format('woff'),
-       url('arcade-webfont.ttf') format('truetype'),
-       url('arcade-webfont.svg#arcaderegular') format('svg');
+  src: url('/assets/arcade-webfont.eot');
+  src: url('/assets/arcade-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/assets/arcade-webfont.woff2') format('woff2'),
+       url('/assets/arcade-webfont.woff') format('woff'),
+       url('/assets/arcade-webfont.ttf') format('truetype'),
+       url('/assets/arcade-webfont.svg#arcaderegular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
