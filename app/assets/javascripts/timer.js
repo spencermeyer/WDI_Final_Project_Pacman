@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+    if(document.getElementById("canvas") !==null){
+
+    canvas      = document.getElementById("canvas");
+
 // THIS IS THE CODE THAT RUNS ONLY ON START UP
 initializeLibrary();
 
@@ -21,6 +26,7 @@ function myTimer() {
 
 // Then call myVar which calls the timer containing the repetitive events
 var myVar=setInterval(function () {myTimer()}, 25);
+}
 })
 
 

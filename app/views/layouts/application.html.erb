@@ -7,8 +7,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class='login'>
+    <% if current_user %>
+      <%= current_user.email %>
+      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Sign In", new_user_session_path %>
+      <%= link_to "Register", new_user_registration_path %>
+    <% end %>
+  </div>
+  <%= link_to "Games", 'games' %>
+
+
 <h1>Welcome to Pacman This is WORK IN PROGRESS</h1>
-<canvas id="canvas" width="560" height="620"></canvas>
+
+<!--<canvas id="canvas" width="560" height="620"></canvas>-->
+
+<%= yield %>
 
 </body>
 </html>

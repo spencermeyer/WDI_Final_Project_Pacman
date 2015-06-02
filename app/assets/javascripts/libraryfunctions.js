@@ -78,7 +78,7 @@ function drawBackGroundImage(){
   // This puts the background image onto the canvas.
   // Important: do not change the dimensions.
   MazeBackground = new Image();
-  MazeBackground.src = "Pac_man_background_image_clean.png";
+  MazeBackground.src = "Assets/Pac_man_background_image_clean.png";
   ctx.drawImage(MazeBackground,0,0,560,620);
 }
 //     *****  REDUNDANT CODE ???? ???  *****
