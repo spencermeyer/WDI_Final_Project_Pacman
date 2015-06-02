@@ -9,6 +9,18 @@ h1{
   margin-left: auto;
   margin-right: auto;
 }
+#positioner{
+  position: absolute;
+  left: 445px;
+  top: 120px;
+}
+#picture{
+  position: absolute;
+  left: 445px;
+  top: 120px;
+  height: 200%;
+  width: 200%;
+}
 #scores{
   font-family: arcaderegular;
   position: absolute;
@@ -17,10 +29,8 @@ h1{
   width: 250px;
   background-color: grey;
 }
-
-#positioner{
-  position: absolute;
-  left: 450px;
+.field{
+  width: 200px;
 }
 @font-face {
   font-family: 'arcaderegular';

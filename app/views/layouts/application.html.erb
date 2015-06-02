@@ -21,7 +21,7 @@
     <%= link_to image_tag('PacManMenu.png')+"New Game", new_game_path %> >
     <% else %>
     <%= link_to image_tag("SignIn.png")+"Sign In", new_user_session_path %>
-    <%= link_to image_tag('register.png')+"Register", new_user_registration_path %>
+    <%= link_to image_tag('Register.png')+"Register", new_user_registration_path %>
     <% end %>
 
   </div>
@@ -37,8 +37,9 @@
 
   <%= link_to "Games", 'games' %>
 
-
   <%= yield %>
+
+<div id="picture"><img src="/assets/Pac_man_background_image.png"></div>
 
 </body>
 </html>

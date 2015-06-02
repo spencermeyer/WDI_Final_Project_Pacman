@@ -1,4 +1,6 @@
 function initializeLibrary(){
+  firstImage  = document.getElementById("picture");
+  firstImage.innerHTML="";
   canvas      = document.getElementById("canvas");
   ctx         = canvas.getContext("2d");
   WIDTH       = canvas.width;
