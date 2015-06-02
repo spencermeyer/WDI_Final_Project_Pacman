@@ -5,7 +5,7 @@ initializeLibrary();
 // THIS FUNCTION IS FOR REPETITIVE EXECUTION HERE
 function myTimer() {
     // console.log("the timer function");
-    clear();
+    clear();                //  Clear the canvas
     drawBackGroundImage();  //  Inserts image from file
     pacman();               //  This draws the pacman in the current position 
     movePacMan();           //  Moves PacMan on automatically 
