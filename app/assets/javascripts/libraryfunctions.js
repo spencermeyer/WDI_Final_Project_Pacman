@@ -82,10 +82,6 @@ function drawBackGroundImage(){
   ctx.drawImage(MazeBackground,0,0,560,620);
 }
 
-// MazeBackground.src = "../../assets/images/Pac_man_background_image_clean.png";
-//
-
-
 //     *****  REDUNDANT CODE ???? ???  *****
 function drawRects(){
   for (i=0; i<pacRects.length; i++){
@@ -419,7 +415,7 @@ function canMove(directionF,xx,yy){
   }else{
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
     dead = true;
-    deathmode();
+    deathMode();
   };
 }
   // check the same for ghost 4
