@@ -2,6 +2,7 @@ h1{
   font-family: arcaderegular;
   font-size: 60px;
   color: green;
+  text-align: center;
 }
 #canvas{
   background-color: grey;
@@ -10,12 +11,16 @@ h1{
 }
 #scores{
   font-family: arcaderegular;
-
+  position: absolute;
+  left: 30px;
+  top: 200px;
+  width: 250px;
+  background-color: grey;
 }
 
 #positioner{
   position: absolute;
-  left: 300px;
+  left: 450px;
 }
 @font-face {
   font-family: 'arcaderegular';

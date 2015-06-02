@@ -1,38 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>WDIPacman</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>WDiPacMan</title>
+
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "vendor/modernizr" %>
+  <%= javascript_include_tag "application"%>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-<%= link_to "Home", '' %>
-<div class='login'>
-    <% if current_user %>
-      <%= current_user.email %>
-      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+  <div class="icon-bar five-up">
+
+    <%= link_to image_tag('fi-home.svg')+"Home", root_path %>
+    <% if user_signed_in? %>
+    <%= link_to image_tag('Logout.png')+"Logout", destroy_user_session_path, method: :delete %> >
+    <%= link_to image_tag('PacManMenu.png')+"New Game", new_game_path %> >
     <% else %>
-      <%= link_to "Sign In", new_user_session_path %>
-      <%= link_to "Register", new_user_registration_path %>
+    <%= link_to image_tag("SignIn.png")+"Sign In", new_user_session_path %>
+    <%= link_to image_tag('register.png')+"Register", new_user_registration_path %>
+    <% end %>
+
+  </div>
+  <div id="scores" >
+    <h1>WDI Pacman</h1>
+    <h3>Top Scores</h3>
+    <% @games.each do |game| %>
+    <ul>
+      <li><%= game.score %></li>
+    </ul>
     <% end %>
   </div>
+
   <%= link_to "Games", 'games' %>
 
- 
-<h1>WDI Pacman</h1>
 
-<!--<canvas id="canvas" width="560" height="620"></canvas>-->
-
-<%= yield %>
-
-<div id="scores" >
-<h3>Top Scores</h3>
-<% @games.each do |game| %>
-<td><%= game.score %></td>
-<% end %>
-</div>
-
+  <%= yield %>
 
 </body>
 </html>
