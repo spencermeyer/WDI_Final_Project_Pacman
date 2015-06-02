@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
-  console.log ("start of Javascript doc loaded");
+  // console.log ("start of Javascript doc loaded");
   
   document.onkeydown=function(){
     //console.log("a key pressed")
     var keyThatWasPressed= (String.fromCharCode(event.keyCode || event.charCode));
-    console.log ("keypressed =", keyThatWasPressed)
+    // console.log ("keypressed =", keyThatWasPressed)
     switch(keyThatWasPressed){
       case("%"):
         //console.log("left was pressed");

@@ -436,13 +436,13 @@ function clearInvincibility(){
 }
 
 function deathMode(){
-  console.log("deathmode entered")
+  // console.log("deathmode entered")
   increment = 0;
   incrementg = 0;
   if(lives<1){timertime=60000}else{timertime=3000};
   var myVar=setTimeout(deathTimer, timertime);
   function deathTimer(){
-    console.log("deathtimer entered");
+    // console.log("deathtimer entered");
     increment = 5;
     incrementg = 6;
     dead = false;
@@ -470,7 +470,7 @@ function drawScore(){
 
 function chompSound(){
   var eat = new Audio('/assets/pacman_chomp_2.wav');
-  console.log("trying to play sound chomp")
+  // console.log("trying to play sound chomp")
   eat.play();
 }
 
