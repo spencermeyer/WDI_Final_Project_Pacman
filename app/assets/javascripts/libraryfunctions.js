@@ -84,16 +84,6 @@ function drawBackGroundImage(){
   ctx.drawImage(MazeBackground,0,0,560,620);
 }
 
-//     *****  REDUNDANT CODE ???? ???  *****
-function drawRects(){
-  for (i=0; i<pacRects.length; i++){
-    ctx.strokeStyle = '#00008F';
-    ctx.lineWidth = 3;
-    ctx.strokeRect(pacRects[i][0],pacRects[i][1],pacRects[i][2],pacRects[i][3]);
-    ctx.closePath;
-  }
-}
-
 function pacman(){
   radiusPacman = 13;
   var colorPacman  = "yellow";
@@ -223,23 +213,23 @@ function moveGhostRand(){
   // In this section we probably turn to hunt the pacman IF canMove is false.
 
   if(canMove(dirg1,xg1,yg1)==false){
-  p1=Math.random();
-  if (x<xg1 && p1>0.05){
-    dirg1 = "left";
-    //console.log("g1 hunting left")
-  };
-  if (y<yg1 && p1>0.05){
-    dirg1 = "up";
-    //console.log("g1 hunting up")
-  };
-  if (x>xg1 && p1>0.05){
-    dirg1 = "right";
-    //console.log("g1 hunting right")
-  };
-  if (y>yg1 && p1>0.05){
-    dirg1 = "down";
-    //console.log("g1 hunting down")
-  };
+    p1=Math.random();
+    if (x<xg1 && p1>0.15){
+      dirg1 = "left";
+      //console.log("g1 hunting left")
+    };
+    if (y<yg1 && p1>0.15){
+      dirg1 = "up";
+      //console.log("g1 hunting up")
+    };
+    if (x>xg1 && p1>0.15){
+      dirg1 = "right";
+      //console.log("g1 hunting right")
+    };
+    if (y>yg1 && p1>0.15){
+      dirg1 = "down";
+      //console.log("g1 hunting down")
+    };
 }
 
   if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
