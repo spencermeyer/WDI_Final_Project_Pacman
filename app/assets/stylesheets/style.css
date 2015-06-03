@@ -18,8 +18,10 @@ h1{
   position: absolute;
   left: 445px;
   top: 120px;
-  height: 200%;
-  width: 200%;
+}
+img{
+  height: 620px;
+  width: 560px;
 }
 #scores{
   font-family: arcaderegular;

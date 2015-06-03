@@ -44,8 +44,8 @@ function clear(){
 function drawLives(){
 // This function draws one, two, or three right facing pacs at the 
 // bottom of the screen depending upon the number of lives left.
-  ctx.font="30px ARCADE";             // Write the word "lives"
-  ctx.strokeStyle = 'white';           // at the bottom of the screen
+  ctx.font="30px arcaderegular";             // Write the word "lives" 
+  ctx.strokeStyle = 'green';           // at the bottom of the screen
   ctx.strokeText("LIVES: ",10,615);   // in white arcade font.
   radiusPacman = 13;
   var colorPacman  = "yellow";
@@ -382,7 +382,7 @@ function canMove(directionF,xx,yy){
       score = score + 50;         // update the score that is then written to screen
       invincible = true;           // make pacman invincible
       // set a timer to time out and remove invincibility 
-      var myVar2=setInterval(function () {clearInvincibility()}, 5000);
+      var myVar2=setInterval(function () {clearInvincibility()}, 7000);
     }
   }
   
@@ -454,8 +454,8 @@ function deathMode(){
 function drawDeath(){
   if(dead){
     ctx.lineWidth = 1;
-    ctx.font="50px ARCADE";
-    ctx.strokeStyle = 'white';
+    ctx.font="50px arcaderegular";
+    ctx.strokeStyle = 'green';
     if(lives<1){messagetext="GAME OVER ! ! !"}else{messagetext="LOSE A LIFE ! ! !"}
     ctx.strokeText(messagetext,150,350);
   x = 200;              // reset position back to starting so that pac does
@@ -465,8 +465,8 @@ function drawDeath(){
 
 function drawScore(){
   ctx.lineWidth = 1;
-  ctx.font="30px ARCADE";
-  ctx.strokeStyle = 'white';
+  ctx.font="30px arcaderegular";
+  ctx.strokeStyle = 'green';
   ctx.strokeText("Score: "+score,10,40);
 }
 
