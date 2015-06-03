@@ -59,21 +59,21 @@ function drawLives(){
   if(lives>1){
     ctx.beginPath();
     ctx.moveTo(145,605);
-  ctx.arc(145,605,radiusPacman,0.25*Math.PI,1.75*Math.PI,false);  // x and y are the circle centre
-  ctx.lineTo(145,605);
-  ctx.fillStyle=colorPacman;
-  ctx.fill();
-  ctx.closePath;
-}
-if(lives>2){
-  ctx.beginPath();
-  ctx.moveTo(175,605);
-  ctx.arc(175,605,radiusPacman,0.25*Math.PI,1.75*Math.PI,false);  // x and y are the circle centre
-  ctx.lineTo(175,605);
-  ctx.fillStyle=colorPacman;
-  ctx.fill();
-  ctx.closePath;
-}
+    ctx.arc(145,605,radiusPacman,0.25*Math.PI,1.75*Math.PI,false);  // x and y are the  circle centre
+    ctx.lineTo(145,605);
+    ctx.fillStyle=colorPacman;
+    ctx.fill();
+    ctx.closePath;
+  }
+  if(lives>2){
+    ctx.beginPath();
+    ctx.moveTo(175,605);
+    ctx.arc(175,605,radiusPacman,0.25*Math.PI,1.75*Math.PI,false);  // x and y are the  circle centre
+    ctx.lineTo(175,605);
+    ctx.fillStyle=colorPacman;
+    ctx.fill();
+    ctx.closePath;
+  }
 }
 
 function drawBackGroundImage(){
@@ -385,7 +385,6 @@ function canMove(directionF,xx,yy){
       var myVar2=setInterval(function () {clearInvincibility()}, 7000);
     }
   }
-  
   // and now to test if there is a collision between the pacman and a ghost
   // and loose a life if this happens.
   if ( Math.abs(x-xg1)<2*radiusPacman && Math.abs(y-yg1)<2*radiusPacman  )  {
@@ -398,7 +397,7 @@ function canMove(directionF,xx,yy){
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
     dead = true;             // sets value so that banner knows to display
     deathMode();             // freezes play and displays message for 2 secs
-  };
+  }
 }
   // check the same for ghost 2
   if ( Math.abs(x-xg2)<2*radiusPacman && Math.abs(y-yg2)<2*radiusPacman  )  {
@@ -411,7 +410,7 @@ function canMove(directionF,xx,yy){
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
     dead = true;
     deathMode();
-  };
+  }
 }
   // check the same for ghost 3
   if ( Math.abs(x-xg3)<2*radiusPacman && Math.abs(y-yg3)<2*radiusPacman  )  {
@@ -424,7 +423,7 @@ function canMove(directionF,xx,yy){
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
     dead = true;
     deathMode();
-  };
+  }
 }
   // check the same for ghost 4
   if ( Math.abs(x-xg4)<2*radiusPacman && Math.abs(y-yg4)<2*radiusPacman  )  {
@@ -437,9 +436,12 @@ function canMove(directionF,xx,yy){
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
     dead = true;
     deathMode();
-  };
+  }
 }
 }
+
+
+
 
 function clearInvincibility(){
   invincible = false;
