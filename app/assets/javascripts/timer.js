@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     if(document.getElementById("canvas") !==null){
-
+        console.log("can see canvas")
     canvas      = document.getElementById("canvas");
 
 // THIS IS THE CODE THAT RUNS ONLY ON START UP

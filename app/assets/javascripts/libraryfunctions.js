@@ -1,6 +1,7 @@
 function initializeLibrary(){
   firstImage  = document.getElementById("picture");
   firstImage.innerHTML="";
+  console.log("initializeLibrary")
   canvas      = document.getElementById("canvas");
   ctx         = canvas.getContext("2d");
   WIDTH       = canvas.width;
@@ -445,7 +446,7 @@ function canMove(directionF,xx,yy){
   // check the same for ghost 4
   if ( Math.abs(x-xg4)<2*radiusPacman && Math.abs(y-yg4)<2*radiusPacman  )  {
    if(invincible){
-    if(ghost4alive==true){
+    if(ghost4alive==true ){
     ghost4alive = false;
     score = score + 200;
     eatGhostSound();
