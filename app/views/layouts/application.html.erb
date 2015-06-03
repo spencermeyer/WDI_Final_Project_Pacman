@@ -27,7 +27,7 @@
   </div>
   <div id="scores" >
     <h1>WDI Pacman</h1>
-    <h3>Top Scores</h3>
+    <h3>HIGH SCORES</h3>
     <% @games.each do |game| %>
     <ul>
       <li><%= game.score %></li>
@@ -40,6 +40,17 @@
   <%= yield %>
 
 <div id="picture"><img src="/assets/Pac_man_background_image_clean.png"></div>
+
+<div id="instructions">
+  <p>INSTRUCTIONS:</p>
+  <p>Click on New Game above to start a game</p>
+  <p>Use arrow keys to move pacman</p>
+  <p>Eat Pac Dots to gain points</p>
+  <p>Eat Power Dots to become invincible and gain more points</p>
+  <p>Avoid the ghosts or die</p>
+  <p>Eat the ghosts when you are invincible for more points</p>
+  <p>Dead Ghosts still have eyes</p>
+</div>
 
 </body>
 </html>

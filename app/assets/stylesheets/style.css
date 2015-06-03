@@ -4,6 +4,34 @@ h1{
   color: green;
   text-align: center;
 }
+p{
+  font-family: arcaderegular;
+  font-size: 30px;
+  color: green;
+}
+h2{
+  float:left;
+  color: green;
+  font-family: arcaderegular;
+}
+.field{
+  float:left;
+  color: green;
+  font-family: arcaderegular;
+  font-size: 30px;
+}
+.email_field{
+  color: green;
+  font-family: arcaderegular;
+  font-size: 30px;
+}
+label{
+  float: left;
+  color: green;
+  font-family: arcaderegular;
+  font-size: 30px;
+}
+
 #canvas{
   background-color: grey;
   margin-left: auto;
@@ -12,12 +40,12 @@ h1{
 #positioner{
   position: absolute;
   left: 445px;
-  top: 120px;
+  top: 135px;
 }
 #picture{
   position: absolute;
   left: 445px;
-  top: 120px;
+  top: 135px;
 }
 img{
   height: 620px;
@@ -28,6 +56,28 @@ img{
   position: absolute;
   left: 30px;
   top: 200px;
+  width: 250px;
+  background-color: grey;
+}
+li{
+  font-family: arcaderegular;
+  font-size: 30px;
+  color: green;
+}
+h3{
+  font-family: arcaderegular;
+  font-size: 40px;
+  color: green;
+}
+.actions{
+  float: left;
+}
+#instructions{
+  font-family: arcaderegular;
+  font-size: 20px;
+  position: absolute;
+  left: 1100px;
+  top: 180px;
   width: 250px;
   background-color: grey;
 }
