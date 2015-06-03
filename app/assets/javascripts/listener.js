@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.onkeydown=function(){
     //console.log("a key pressed")
     var keyThatWasPressed= (String.fromCharCode(event.keyCode || event.charCode));
-    // console.log ("keypressed =", keyThatWasPressed)
+    console.log ("keypressed =", keyThatWasPressed)
     switch(keyThatWasPressed){
       case("%"):
         //console.log("left was pressed");
@@ -36,8 +36,13 @@ document.addEventListener('DOMContentLoaded', function () {
         break;
       case(" "):
         //console.log("space was pressed");
+        writeScore(score);
         break;
+      case("A"):
+          //console.log("space was pressed");
+          writeHighScore();
+          break;
+        }
       }
-    }
 
-  });
+    });

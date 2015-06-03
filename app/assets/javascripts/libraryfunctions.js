@@ -36,6 +36,7 @@ function initializeLibrary(){
   ghost2alive = true;                     // can be killed by Pac when Pac is invinc
   ghost3alive = true;                     // can be killed by Pac when Pac is invinc
   ghost4alive = true;                     // can be killed by Pac when Pac is invinc
+  highScoreNW = true;                     // high Score Not Written to the DOM.
 }
 
 function clear(){
@@ -473,10 +474,6 @@ function deathMode(){
   dieSound();
   // now we need to write the score to the database this will be done by 
   // an ajax call.
-  
-
-
-
   //
   if(lives<1){timertime=60000}else{timertime=3000};
   var myVar=setTimeout(deathTimer, timertime);
@@ -493,6 +490,10 @@ function drawDeath(){
     ctx.lineWidth = 1;
     ctx.font="90px arcaderegular";
     ctx.strokeStyle = 'green';
+    if(lives<1  &&  highScoreNW){
+      writeHighScore(); 
+      highScoreNW = false;
+    }
     if(lives<1){messagetext="GAME OVER ! ! !"}else{messagetext="LOSE A LIFE ! ! !"}
       ctx.strokeText(messagetext,40,350);
   x = 200;              // reset position back to starting so that pac does
@@ -527,8 +528,24 @@ function begginingSound(){
    // console.log("playing dyingSound")
    dieSound.play();
  }
-
-
+function writeScore(){
+  xmlPostHttp = new XMLHttpRequest();
+  data = { game: {
+        score: 1111,
+        level: 1,
+        user_id: 1
+      }}
+  dataString = JSON.stringify(data);
+  xmlPostHttp.open("POST", "/games");
+  xmlPostHttp.send(dataString);
+}
+function writeHighScore(){
+  console.log("writing game score");
+  var list = document.getElementById("scores");
+  element = document.createElement('li');
+  element.innerHTML = "<li>"+"YourScore"+score+"</li>";
+  list.appendChild(element);
+}
 
 
 
