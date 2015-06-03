@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // THIS IS THE CODE THAT RUNS ONLY ON START UP
 initializeLibrary();
+begginingSound();
 
 // THIS FUNCTION IS FOR REPETITIVE EXECUTION HERE
 function myTimer() {

@@ -216,14 +216,31 @@ function moveGhostRand(){
   // Starts from the initialised direction, then moves until it finds
   // a wall then changes to a random direction then repeats.
   var directions = ['up', 'down', 'right', 'left'];  
-  
+   
   //  here set the hunter function for ghost 1
   //  Basis is of following the x y coordinates of pac with probability
+
+  // In this section we probably turn to hunt the pacman IF canMove is false.
+
+  if(canMove(dirg1,xg1,yg1)==false){
   p1=Math.random();
-  if (x<xg1 && p1>0.25){dirg1 = "left"};
-  if (y<yg1 && p1>0.25){dirg1 = "up"};
-  if (x>xg1 && p1>0.25){dirg1 = "right"};
-  if (y>yg1 && p1>0.25){dirg1 = "down"};
+  if (x<xg1 && p1>0.05){
+    dirg1 = "left";
+    //console.log("g1 hunting left")
+  };
+  if (y<yg1 && p1>0.05){
+    dirg1 = "up";
+    //console.log("g1 hunting up")
+  };
+  if (x>xg1 && p1>0.05){
+    dirg1 = "right";
+    //console.log("g1 hunting right")
+  };
+  if (y>yg1 && p1>0.05){
+    dirg1 = "down";
+    //console.log("g1 hunting down")
+  };
+}
 
   if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
     xg1 = xg1 - incrementg;
@@ -245,7 +262,7 @@ function moveGhostRand(){
     dirg1 = directions[Math.floor(Math.random() * directions.length)];
     //console.log("canmove is false changing direction to", dirg1);
   }
-  // Repeat for ghost 2
+  // *****   Repeat for ghost 2  ********
   if (dirg2 === "left" && canMove(dirg2,xg2,yg2)) {
     xg2 = xg2 - incrementg;
     //console.log("true - ghost moving left");
@@ -266,7 +283,7 @@ function moveGhostRand(){
     dirg2 = directions[Math.floor(Math.random() * directions.length)];
     //console.log("canmove is false changing direction to", dirg1);
   }
-  // Repeat for ghost 3
+  // *****  Repeat for ghost 3 *******
   if (dirg3 === "left" && canMove(dirg3,xg3,yg3)) {
     xg3 = xg3 - incrementg;
     //console.log("true - ghost moving left");
@@ -287,7 +304,7 @@ function moveGhostRand(){
     dirg3 = directions[Math.floor(Math.random() * directions.length)];
     //console.log("canmove is false changing direction to", dirg1);
   }
-  // Repeat for ghost 4
+  // ****** Repeat for ghost 4  *********
   if (dirg4 === "left" && canMove(dirg4,xg4,yg4)) {
     xg4 = xg4 - incrementg;
     //console.log("true - ghost moving left");
@@ -391,6 +408,7 @@ function canMove(directionF,xx,yy){
    if(invincible){
     ghost1alive = false;
     score = score + 200;
+    eatGhostSound();
   }else if(ghost1alive === false){
     // console.log("collision eyes");
   }else{
@@ -404,6 +422,7 @@ function canMove(directionF,xx,yy){
    if(invincible){
     ghost2alive = false;
     score = score + 200;
+    eatGhostSound();
   }else if(ghost2alive === false){
     // console.log("collision eyes");
   }else{
@@ -417,6 +436,7 @@ function canMove(directionF,xx,yy){
    if(invincible){
     ghost3alive = false;
     score = score + 200;
+    eatGhostSound();
   }else if(ghost3alive === false){
     // console.log("collision eyes");
   }else{
@@ -430,6 +450,7 @@ function canMove(directionF,xx,yy){
    if(invincible){
     ghost4alive = false;
     score = score + 200;
+    eatGhostSound();
   }else if(ghost4alive === false){
     // console.log("collision eyes");
   }else{
@@ -441,8 +462,6 @@ function canMove(directionF,xx,yy){
 }
 
 
-
-
 function clearInvincibility(){
   invincible = false;
 }
@@ -451,6 +470,7 @@ function deathMode(){
   // console.log("deathmode entered")
   increment = 0;
   incrementg = 0;
+  dieSound();
   if(lives<1){timertime=60000}else{timertime=3000};
   var myVar=setTimeout(deathTimer, timertime);
   function deathTimer(){
@@ -464,10 +484,10 @@ function deathMode(){
 function drawDeath(){
   if(dead){
     ctx.lineWidth = 1;
-    ctx.font="70px arcaderegular";
+    ctx.font="90px arcaderegular";
     ctx.strokeStyle = 'green';
     if(lives<1){messagetext="GAME OVER ! ! !"}else{messagetext="LOSE A LIFE ! ! !"}
-      ctx.strokeText(messagetext,150,350);
+      ctx.strokeText(messagetext,40,350);
   x = 200;              // reset position back to starting so that pac does
   y = 200;              // not continuously lose life in same position
 }
@@ -481,8 +501,29 @@ function drawScore(){
 }
 
 function chompSound(){
-  var eat = new Audio('/assets/pacman_chomp_2.wav');
+  var eat = new Audio('/assets/pacman_chomp_3.wav');
   // console.log("trying to play sound chomp")
   eat.play();
 }
+function begginingSound(){
+  var beggining = new Audio('/assets/pacman_beginning_2.wav');
+   console.log("trying to play begginingSound")
+  beggining.play();
+}
+function dieSound(){
+  var dieSound = new Audio('/assets/pacman_death.wav');
+   console.log("trying to play dyingSound")
+  dieSound.play();
+}
+function eatGhostSound(){
+  var dieSound = new Audio('/assets/pacman_death.wav');
+   console.log("trying to play dyingSound")
+  dieSound.play();
+}
+
+
+
+
+
+
 
