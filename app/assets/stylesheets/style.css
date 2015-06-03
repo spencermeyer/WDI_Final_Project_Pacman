@@ -25,6 +25,12 @@ h2{
   font-family: arcaderegular;
   font-size: 30px;
 }
+.signinbuttons{
+  color: green;
+  font-family: arcaderegular;
+  font-size: 20px;
+  float:left;
+}
 label{
   float: left;
   color: green;
@@ -78,7 +84,7 @@ h3{
   position: absolute;
   left: 1050px;
   top: 135px;
-  width: 300px;
+  width: 350px;
   background-color: grey;
 }
 .field{

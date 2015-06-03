@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>WDiPacMan</title>
-
+  <%= javascript_include_tag :defaults %>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "vendor/modernizr" %>
   <%= javascript_include_tag "application"%>
@@ -15,7 +15,7 @@
 <body>
   <div class="icon-bar five-up">
 
-    <%= link_to image_tag('fi-home.svg')+"Home", root_path %>
+    <%= link_to image_tag('fi-home.png')+"Home", root_path %>
     <% if user_signed_in? %>
     <%= link_to image_tag('Logout.png')+"Logout", destroy_user_session_path, method: :delete %> >
     <%= link_to image_tag('PacManMenu.png')+"New Game", new_game_path %> >
@@ -39,23 +39,24 @@
 
   <%= yield %>
 
-<div id="picture"><img src="/assets/Pac_man_background_image_clean.png"></div>
+  <div id="picture"><img src="/assets/Pac_man_background_image_clean.png"></div>
 
-<div id="instructions">
-  <p>INSTRUCTIONS:</p>
-  <p>Click on New Game above to start a game</p>
-  <p>Use arrow keys to move pacman</p>
-  <p>Eat Pac Dots to gain points</p>
-  <p>Eat Power Dots to become invincible and gain more points</p>
-  <p>Avoid the ghosts or die</p>
-  <p>Eat the ghosts when you are invincible for more points</p>
-  <p>Invincibility is short lived</p>
-  <p>Dead Ghosts still have eyes</p>
-  <p>Watch out for Blinky the red ghost, he chases you!</p>
-  <p>Pinky, Inky and Clyde are more passive></p>
-  <p>written by</p>
-  <p>Spencer Meyer, General Assembly 2015</p>
-</div>
+  <div id="instructions">
+    <p>  </p>
+    <p>INSTRUCTIONS:</p>
+    <p>Sign in then click on New Game above to start a game</p>
+    <p>Use arrow keys to move pacman</p>
+    <p>Eat Pac Dots to gain points</p>
+    <p>Eat Power Dots to become invincible and gain more points</p>
+    <p>Avoid the ghosts or die</p>
+    <p>Eat the ghosts when you are invincible for more points</p>
+    <p>Invincibility is short lived</p>
+    <p>Dead Ghosts still have eyes</p>
+    <p>Watch out for Blinky the red ghost, he chases you!</p>
+    <p>Pinky, Inky and Clyde are more passive></p>
+    <p>written by</p>
+    <p>Spencer Meyer, General Assembly 2015</p>
+  </div>
 
 </body>
 </html>

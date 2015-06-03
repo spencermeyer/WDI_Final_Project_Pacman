@@ -471,6 +471,13 @@ function deathMode(){
   increment = 0;
   incrementg = 0;
   dieSound();
+  // now we need to write the score to the database this will be done by 
+  // an ajax call.
+  
+
+
+
+  //
   if(lives<1){timertime=60000}else{timertime=3000};
   var myVar=setTimeout(deathTimer, timertime);
   function deathTimer(){
