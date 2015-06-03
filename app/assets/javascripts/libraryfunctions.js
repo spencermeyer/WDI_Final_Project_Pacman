@@ -413,9 +413,11 @@ function canMove(directionF,xx,yy){
   // check the same for ghost 2
   if ( Math.abs(x-xg2)<2*radiusPacman && Math.abs(y-yg2)<2*radiusPacman  )  {
    if(invincible){
+    if(ghost2alive==true){
     ghost2alive = false;
     score = score + 200;
     eatGhostSound();
+    }
   }else if(ghost2alive === false){
     // console.log("collision eyes");
   }else{
@@ -427,9 +429,11 @@ function canMove(directionF,xx,yy){
   // check the same for ghost 3
   if ( Math.abs(x-xg3)<2*radiusPacman && Math.abs(y-yg3)<2*radiusPacman  )  {
    if(invincible){
+    if(ghost3alive==true){
     ghost3alive = false;
     score = score + 200;
     eatGhostSound();
+    }
   }else if(ghost3alive === false){
     // console.log("collision eyes");
   }else{
@@ -441,9 +445,11 @@ function canMove(directionF,xx,yy){
   // check the same for ghost 4
   if ( Math.abs(x-xg4)<2*radiusPacman && Math.abs(y-yg4)<2*radiusPacman  )  {
    if(invincible){
+    if(ghost4alive==true){
     ghost4alive = false;
     score = score + 200;
     eatGhostSound();
+    }
   }else if(ghost4alive === false){
     // console.log("collision eyes");
   }else{
