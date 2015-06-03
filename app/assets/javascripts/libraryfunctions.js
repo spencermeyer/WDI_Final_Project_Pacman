@@ -392,10 +392,12 @@ function canMove(directionF,xx,yy){
    if(invincible){
     ghost1alive = false;
     score = score + 200;
+  }else if(ghost1alive === false){
+    // console.log("collision eyes");
   }else{
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
     dead = true;             // sets value so that banner knows to display
-    deathMode();              // freezes play and displays message for 2 secs
+    deathMode();             // freezes play and displays message for 2 secs
   };
 }
   // check the same for ghost 2
@@ -403,6 +405,8 @@ function canMove(directionF,xx,yy){
    if(invincible){
     ghost2alive = false;
     score = score + 200;
+  }else if(ghost2alive === false){
+    // console.log("collision eyes");
   }else{
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
     dead = true;
@@ -414,6 +418,8 @@ function canMove(directionF,xx,yy){
    if(invincible){
     ghost3alive = false;
     score = score + 200;
+  }else if(ghost3alive === false){
+    // console.log("collision eyes");
   }else{
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
     dead = true;
@@ -425,6 +431,8 @@ function canMove(directionF,xx,yy){
    if(invincible){
     ghost4alive = false;
     score = score + 200;
+  }else if(ghost4alive === false){
+    // console.log("collision eyes");
   }else{
     lives = lives -1 ;       // reduce the lives if pacman is not invincible
     dead = true;
@@ -454,10 +462,10 @@ function deathMode(){
 function drawDeath(){
   if(dead){
     ctx.lineWidth = 1;
-    ctx.font="50px arcaderegular";
+    ctx.font="70px arcaderegular";
     ctx.strokeStyle = 'green';
     if(lives<1){messagetext="GAME OVER ! ! !"}else{messagetext="LOSE A LIFE ! ! !"}
-    ctx.strokeText(messagetext,150,350);
+      ctx.strokeText(messagetext,150,350);
   x = 200;              // reset position back to starting so that pac does
   y = 200;              // not continuously lose life in same position
 }
