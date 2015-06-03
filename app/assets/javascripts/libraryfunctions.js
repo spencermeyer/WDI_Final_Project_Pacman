@@ -206,7 +206,7 @@ function moveGhostRand(){
   // Starts from the initialised direction, then moves until it finds
   // a wall then changes to a random direction then repeats.
   var directions = ['up', 'down', 'right', 'left'];  
-   
+
   //  here set the hunter function for ghost 1
   //  Basis is of following the x y coordinates of pac with probability
 
@@ -230,7 +230,7 @@ function moveGhostRand(){
       dirg1 = "down";
       //console.log("g1 hunting down")
     };
-}
+  }
 
   if (dirg1 === "left" && canMove(dirg1,xg1,yg1)) {
     xg1 = xg1 - incrementg;
@@ -396,9 +396,12 @@ function canMove(directionF,xx,yy){
   // and loose a life if this happens.
   if ( Math.abs(x-xg1)<2*radiusPacman && Math.abs(y-yg1)<2*radiusPacman  )  {
    if(invincible){
-    ghost1alive = false;
-    score = score + 200;
-    eatGhostSound();
+    if(ghost1alive==true){
+      score = score + 200;
+      console.log("adding 200 for eating ghost 1");
+      ghost1alive = false;
+      eatGhostSound();
+    }
   }else if(ghost1alive === false){
     // console.log("collision eyes");
   }else{
@@ -492,24 +495,24 @@ function drawScore(){
 
 function chompSound(){
   var eat = new Audio('/assets/pacman_chomp_3.wav');
-  // console.log("trying to play sound chomp")
+  // console.log("playing sound chomp")
   eat.play();
 }
 function begginingSound(){
   var beggining = new Audio('/assets/pacman_beginning_2.wav');
-   console.log("trying to play begginingSound")
-  beggining.play();
-}
-function dieSound(){
+   // console.log("trying to play begginingSound")
+   beggining.play();
+ }
+ function dieSound(){
   var dieSound = new Audio('/assets/pacman_death.wav');
-   console.log("trying to play dyingSound")
-  dieSound.play();
-}
-function eatGhostSound(){
+   // console.log("playing dyingSound")
+   dieSound.play();
+ }
+ function eatGhostSound(){
   var dieSound = new Audio('/assets/pacman_death.wav');
-   console.log("trying to play dyingSound")
-  dieSound.play();
-}
+   // console.log("playing dyingSound")
+   dieSound.play();
+ }
 
 
 
