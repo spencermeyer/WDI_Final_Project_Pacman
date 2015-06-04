@@ -5,13 +5,10 @@ body{
   position: absolute;
   left: 20px;
   top: 135px;
-
-  max-width:250px;
-  max-height:300px;
+  max-width:350px;
+  max-height:350px;
   width: auto;
   height: auto;
-
-
   width: 250px;
   opacity: 0.4;
 }
@@ -93,6 +90,7 @@ img{
 }
 #scores{
   font-family: arcaderegular;
+  font-size: 70px;
   position: absolute;
   left: 30px;
   top: 135px;
@@ -100,7 +98,7 @@ img{
 }
 li{
   font-family: arcaderegular;
-  font-size: 30px;
+  font-size: 50px;
   color: green;
 }
 h3{
@@ -113,12 +111,11 @@ h3{
 }
 #instructions{
   font-family: arcaderegular;
-  font-size: 20px;
+  font-size: 25px;
   position: absolute;
   left: 1100px;
   top: 135px;
   width: 450px;
-  background-color: grey;
 }
 .field{
   width: 200px;

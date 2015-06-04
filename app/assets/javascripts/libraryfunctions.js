@@ -493,6 +493,7 @@ function drawDeath(){
     if(lives<1  &&  highScoreNW){
       writeHighScore(); 
       highScoreNW = false;
+      writeScore();
     }
     if(lives<1){messagetext="GAME OVER ! ! !"}else{messagetext="LOSE A LIFE ! ! !"}
       ctx.strokeText(messagetext,40,350);
