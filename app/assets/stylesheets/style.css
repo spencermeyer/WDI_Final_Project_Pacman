@@ -27,20 +27,20 @@ body{
 #top, #bottom, #left, #right {
   background: #E6E600;
   position: fixed;
-  }
-  #left, #right {
-    top: 0; bottom: 0;
-    width: 10px;
-    }
-    #left { left: 0; }
-    #right { right: 0; }
-    
-  #top, #bottom {
-    left: 0; right: 0;
-    height: 10px;
-    }
-    #top { top: 0; }
-    #bottom { bottom: 0; }
+}
+#left, #right {
+  top: 0; bottom: 0;
+  width: 10px;
+}
+#left { left: 0; }
+#right { right: 0; }
+
+#top, #bottom {
+  left: 0; right: 0;
+  height: 10px;
+}
+#top { top: 0; }
+#bottom { bottom: 0; }
 h1{
   font-family: arcaderegular;
   font-size: 65px;
@@ -62,6 +62,24 @@ h2{
   color: green;
   font-family: arcaderegular;
   font-size: 30px;
+  width: 200px;
+  top: 100px;
+}
+input{
+height: 30px;
+font-size: 25px;
+background-color: #99FF66;
+}
+#user_email, #user_password, #user_remember_me{
+height: 30px;
+background-color: #99FF66;
+font-size: 20px;
+font-family: arcaderegular;
+}
+
+#login{
+  left: 100px;
+  top: 300px;
 }
 .email_field{
   color: green;
@@ -129,17 +147,26 @@ h3{
   top: 135px;
   width: 450px;
 }
-.field{
-  width: 200px;
-}
+
+
+
+
 @font-face {
   font-family: 'arcaderegular';
   src: url('/assets/arcade-webfont.eot');
   src: url('/assets/arcade-webfont.eot?#iefix') format('embedded-opentype'),
-       url('/assets/arcade-webfont.woff2') format('woff2'),
-       url('/assets/arcade-webfont.woff') format('woff'),
-       url('/assets/arcade-webfont.ttf') format('truetype'),
-       url('/assets/arcade-webfont.svg#arcaderegular') format('svg');
+  url('/assets/arcade-webfont.woff2') format('woff2'),
+  url('/assets/arcade-webfont.woff') format('woff'),
+  url('/assets/arcade-webfont.ttf') format('truetype'),
+  url('/assets/arcade-webfont.svg#arcaderegular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
+
+
+
+
+
+
+
+
