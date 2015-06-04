@@ -11,6 +11,11 @@ Game.create(score:999, level:1, user_id:1);
 Game.create(score:888, level:1, user_id:1);
 Game.create(score:777, level:1, user_id:2);
 Game.create(score:666, level:1, user_id:3);
+Game.create(score:555, level:1, user_id:3);
+Game.create(score:444, level:1, user_id:3);
+Game.create(score:333, level:1, user_id:3);
+Game.create(score:222, level:1, user_id:3);
+Game.create(score:111, level:1, user_id:3);
 
 User.create(email:"a@a.com", password:"password");
 User.create(email:"b@b.com", password:"password");

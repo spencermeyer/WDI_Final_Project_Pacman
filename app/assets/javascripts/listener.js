@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     switch(keyThatWasPressed){
       case("%"):
         //console.log("left was pressed");
-        ang1 = 0.75 *Math.PI;
-        ang2 = 1.25 *Math.PI;
+        ang1 = 0.75*Math.PI;
+        ang2 = 1.25*Math.PI;
         pacwise = true;
         direction = "left";
         break;
@@ -39,9 +39,9 @@ document.addEventListener('DOMContentLoaded', function () {
         writeScore(score);
         break;
       case("A"):
-          //console.log("space was pressed");
-          writeHighScore();
-          break;
+        //console.log("space was pressed");
+        writeHighScore();
+        break;
         }
       }
 

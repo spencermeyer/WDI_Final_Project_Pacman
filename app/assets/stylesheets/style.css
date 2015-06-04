@@ -1,3 +1,30 @@
+body{
+  background-color: black; 
+}
+#machine{
+  position: absolute;
+  left: 20px;
+  top: 135px;
+  width: 250px;
+  opacity: 0.4;
+}
+#top, #bottom, #left, #right {
+  background: #E6E600;
+  position: fixed;
+  }
+  #left, #right {
+    top: 0; bottom: 0;
+    width: 10px;
+    }
+    #left { left: 0; }
+    #right { right: 0; }
+    
+  #top, #bottom {
+    left: 0; right: 0;
+    height: 10px;
+    }
+    #top { top: 0; }
+    #bottom { bottom: 0; }
 h1{
   font-family: arcaderegular;
   font-size: 60px;
@@ -61,7 +88,7 @@ img{
   font-family: arcaderegular;
   position: absolute;
   left: 30px;
-  top: 200px;
+  top: 135px;
   width: 250px;
   background-color: grey;
 }
@@ -82,9 +109,9 @@ h3{
   font-family: arcaderegular;
   font-size: 20px;
   position: absolute;
-  left: 1050px;
+  left: 1100px;
   top: 135px;
-  width: 350px;
+  width: 450px;
   background-color: grey;
 }
 .field{

@@ -474,7 +474,7 @@ function deathMode(){
   dieSound();
   // now we need to write the score to the database this will be done by 
   // an ajax call.
-  //
+  //   
   if(lives<1){timertime=60000}else{timertime=3000};
   var myVar=setTimeout(deathTimer, timertime);
   function deathTimer(){
@@ -533,12 +533,12 @@ function writeScore(){
   data = { game: {
         score: 1111,
         level: 1,
-        user_id: 1
+        user_id: "1"
       }}
   dataString = JSON.stringify(data);
   xmlPostHttp.open("POST", "/games");
   xmlPostHttp.send(dataString);
-}
+} 
 function writeHighScore(){
   console.log("writing game score");
   var list = document.getElementById("scores");
