@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :get_games
 
   def get_games
-    @games = Game.order("score").limit(5).reverse
+    @games = Game.order("score DESC").limit(5)
   end
 
 

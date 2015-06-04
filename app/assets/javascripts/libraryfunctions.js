@@ -529,15 +529,13 @@ function begginingSound(){
    dieSound.play();
  }
 function writeScore(){
-  xmlPostHttp = new XMLHttpRequest();
-  data = { game: {
-        score: 1111,
-        level: 1,
-        user_id: "1"
-      }}
-  dataString = JSON.stringify(data);
-  xmlPostHttp.open("POST", "/games");
-  xmlPostHttp.send(dataString);
+  $.ajax({
+    type: "POST",
+    url: "/games",
+    data: { game : { score: score }}
+  }).done(function(data){
+    console.log(data);
+  })
 } 
 function writeHighScore(){
   console.log("writing game score");

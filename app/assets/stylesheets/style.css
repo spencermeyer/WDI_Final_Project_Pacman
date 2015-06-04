@@ -5,6 +5,13 @@ body{
   position: absolute;
   left: 20px;
   top: 135px;
+
+  max-width:250px;
+  max-height:300px;
+  width: auto;
+  height: auto;
+
+
   width: 250px;
   opacity: 0.4;
 }
@@ -90,7 +97,6 @@ img{
   left: 30px;
   top: 135px;
   width: 250px;
-  background-color: grey;
 }
 li{
   font-family: arcaderegular;
