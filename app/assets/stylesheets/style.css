@@ -12,6 +12,18 @@ body{
   width: 250px;
   opacity: 0.4;
 }
+#machine2{
+  position: absolute;
+  left: 1320px;
+  top: 135px;
+  max-width:350px;
+  max-height:350px;
+  width: auto;
+  height: auto;
+  width: 250px;
+  opacity: 0.4;
+  transform: scaleX(-1);
+}
 #top, #bottom, #left, #right {
   background: #E6E600;
   position: fixed;
@@ -31,7 +43,7 @@ body{
     #bottom { bottom: 0; }
 h1{
   font-family: arcaderegular;
-  font-size: 60px;
+  font-size: 65px;
   color: green;
   text-align: center;
 }
@@ -94,7 +106,7 @@ img{
   position: absolute;
   left: 30px;
   top: 135px;
-  width: 250px;
+  width: 270px;
 }
 li{
   font-family: arcaderegular;
@@ -103,7 +115,7 @@ li{
 }
 h3{
   font-family: arcaderegular;
-  font-size: 40px;
+  font-size: 45px;
   color: green;
 }
 .actions{
