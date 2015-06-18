@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
     canvas      = document.getElementById("canvas");
 
 // THIS IS THE CODE THAT RUNS ONLY ON START UP
-initializeLibrary();
-begginingSound();
+    initializeLibrary();
+    begginingSound();
 
 // THIS FUNCTION IS FOR REPETITIVE EXECUTION HERE
 function myTimer() {
