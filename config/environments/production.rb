@@ -37,6 +37,7 @@ Rails.application.configure do
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
 # altered from default of false to true for trial 19 june 2015
+# WOW THIS WAS THE TRICK THAT GOT IT WORKING ON HEROKU !!
 
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
