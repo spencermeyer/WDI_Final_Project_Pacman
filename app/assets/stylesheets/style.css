@@ -70,7 +70,7 @@ height: 30px;
 font-size: 25px;
 background-color: #99FF66;
 }
-#user_email, #user_password, #user_remember_me{
+#user_email, #user_password, #user_password_confirmation, #user_remember_me{
 height: 30px;
 background-color: #99FF66;
 font-size: 20px;
@@ -147,9 +147,6 @@ h3{
   top: 135px;
   width: 450px;
 }
-
-
-
 
 @font-face {
   font-family: 'arcaderegular';
