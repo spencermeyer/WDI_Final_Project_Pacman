@@ -37,7 +37,7 @@ body{
 
 #top, #bottom {
   left: 0; right: 0;
-  height: 10px;
+  height: 10px; 
 }
 #top { top: 0; }
 #bottom { bottom: 0; }
@@ -47,15 +47,18 @@ h1{
   color: green;
   text-align: center;
 }
-p{
-  font-family: arcaderegular;
-  font-size: 30px;
-  color: green;
-}
 h2{
   float:left;
   color: green;
   font-family: arcaderegular;
+}
+#signup{
+  padding-left: 15px;
+}
+p{
+  font-family: arcaderegular;
+  font-size: 30px;
+  color: green;
 }
 .field{
   float:left;
@@ -75,6 +78,7 @@ height: 30px;
 background-color: #99FF66;
 font-size: 20px;
 font-family: arcaderegular;
+
 }
 
 #login{
@@ -97,6 +101,7 @@ label{
   color: green;
   font-family: arcaderegular;
   font-size: 30px;
+  padding: 0px 0px 0px 10px;
 }
 
 #canvas{
