@@ -55,6 +55,9 @@ h2{
 #signup #signin{
   padding-left: 15px;
 }
+h2 .field #signup {
+ padding-left: 30px; 
+}
 #login{
   left: 100px;
   top: 300px;
@@ -73,20 +76,27 @@ p{
   width: 150px;
   top: 100px;
 }
+.field2{
+  float:left;
+  color: green;
+  font-family: arcaderegular;
+  font-size: 30px;
+  width: 100px;
+  top: 100px;
+}
 input{
-height: 30px;
-font-size: 25px;
-background-color: #99FF66;
+  height: 30px;
+  font-size: 25px;
+  background-color: #99FF66;
 }
 #user_email, #user_password, #user_password_confirmation, #user_remember_me{
-height: 30px;
-background-color: #99FF66;
-font-size: 20px;
-font-family: arcaderegular;
-padding: 0px 10px 0px 0px;
-float: left;
+  height: 30px;
+  background-color: #99FF66;
+  font-size: 20px;
+  font-family: arcaderegular;
+  padding: 0px 10px 0px 0px;
+  float: left;
 }
-
 .email_field{
   color: green;
   font-family: arcaderegular;
@@ -145,6 +155,7 @@ h3{
 }
 .actions{
   float: left;
+  padding-left: 20px;
 }
 #instructions{
   font-family: arcaderegular;
