@@ -25,7 +25,7 @@ FEATURES:
 
 *Uses JS timers to time out the messages and the invincible phase.
 
-*There are in the region of 600 lined of custom vanilla Javascript in this project.
+*There are in the region of 600 lines of custom vanilla Javascript in this project.
 
 
 
